@@ -1,0 +1,20 @@
+.carousel-control-next-icon {
+  height: 15px;
+}
+
+.carousel-text {
+  font-size: 1.25rem;
+}
+
+.carousel-caption {
+  color: black;
+  margin-bottom: 5rem;
+}
+
+#inputEmail {
+  width: 250px;
+}
+
+.logos {
+  height: 30px;
+}

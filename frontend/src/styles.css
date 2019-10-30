@@ -1,1 +1,58 @@
 /* You can add global styles to this file, and also import other style files */
+.btn-main {
+  color: #FFFFFF;
+  background-color: #0F9EB5;
+  border-color: #0F9EB5;
+}
+
+.btn-main:hover,
+.btn-main:focus,
+.btn-main:active,
+.open .dropdown-toggle.btn-main {
+  color: #FFFFFF;
+  background-color: #0f9eb5;
+  border-color: #0F9EB5;
+}
+
+.btn-main:focus {
+  box-shadow: 0 0 0 0.2rem rgba(15, 158, 181, 0.3);
+}
+
+.btn-main:active,
+.btn-main.active,
+.open .dropdown-toggle.btn-main {
+  background-image: none;
+}
+
+.btn-main.disabled,
+.btn-main[disabled],
+fieldset[disabled] .btn-main,
+.btn-main.disabled:hover,
+.btn-main[disabled]:hover,
+fieldset[disabled] .btn-main:hover,
+.btn-main.disabled:focus,
+.btn-main[disabled]:focus,
+fieldset[disabled] .btn-main:focus,
+.btn-main.disabled:active,
+.btn-main[disabled]:active,
+fieldset[disabled] .btn-main:active,
+.btn-main.disabled.active,
+.btn-main[disabled].active,
+fieldset[disabled] .btn-main.active {
+  background-color: #0F9EB5;
+  border-color: #0F9EB5;
+}
+
+.btn-main .badge {
+  color: #0F9EB5;
+  background-color: #FFFFFF;
+}
+
+.carousel-indicators .active {
+  opacity: 1;
+  background-color: #0F9EB5;
+}
+
+a, a:hover {
+  color: #0f9eb5;
+}
