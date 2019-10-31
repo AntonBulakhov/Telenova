@@ -1,0 +1,21 @@
+ul.tariff {
+  list-style-image: url('/assets/img/check.png');
+  font-size: 1.25rem;
+}
+
+.price-text {
+  font-size: 1.4rem;
+}
+
+.card-button {
+  width: 75%;
+  height: 50px;
+}
+
+.sales-card {
+  cursor: pointer;
+}
+
+.sales-card:hover {
+  transform: translateY(-8px);
+}

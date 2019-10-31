@@ -1,20 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+.bg-main {
+  background-color: #0F9EB5;
+}
+
 .btn-main {
   color: #FFFFFF;
   background-color: #0F9EB5;
   border-color: #0F9EB5;
 }
 
+.btn-outline-main {
+  color: #0F9EB5;
+  background: transparent;
+  border-color: #0F9EB5;
+}
+
 .btn-main:hover,
 .btn-main:focus,
 .btn-main:active,
-.open .dropdown-toggle.btn-main {
+.open .dropdown-toggle.btn-main,
+.btn-outline-main:hover,
+.btn-outline-main:focus{
   color: #FFFFFF;
   background-color: #0f9eb5;
   border-color: #0F9EB5;
 }
 
-.btn-main:focus {
+.btn-main:focus,
+.btn-outline-main:focus{
   box-shadow: 0 0 0 0.2rem rgba(15, 158, 181, 0.3);
 }
 
