@@ -13,3 +13,7 @@ header {
   top: -5.4rem;
   box-shadow: 0 8px 24px -8px rgba(0,0,0,.12);
 }
+
+.dropdown-item:focus {
+  background-color: #0f9eb5;
+}

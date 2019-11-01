@@ -20,7 +20,7 @@
   </nav>
   <nav class="navbar navbar-expand-lg navbar-light bg-white" id="nav2">
     <div class="justify-content-center col-2 d-flex">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" routerLink="/">
         <img src="/assets/img/company-logo.jpg" alt="logo" id="mainLogo" style="width: 125px">
       </a>
     </div>
@@ -40,12 +40,19 @@
         <a href="#">
           <img src="/assets/img/support.svg" alt="user" style="height: 35px">
         </a>
-        <a href="#">
+        <a href="#" hidden>
           <img src="/assets/img/cart.svg" alt="user" style="height: 35px">
         </a>
-        <a href="#">
+        <a href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <img src="/assets/img/user.svg" alt="user" style="height: 35px">
         </a>
+        <div class="dropdown-menu" aria-labelledby="userDropdown">
+          <a class="dropdown-item" href="#">Войти</a>
+          <a class="dropdown-item" href="#">Зарегестрироваться</a>
+          <a class="dropdown-item" routerLink="/profile">Профиль</a>
+          <a class="dropdown-item" href="#">Меню администратора</a>
+          <a class="dropdown-item" href="#">Выйти</a>
+        </div>
       </div>
     </div>
   </nav>

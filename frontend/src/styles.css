@@ -69,3 +69,7 @@ fieldset[disabled] .btn-main.active {
 a, a:hover {
   color: #0f9eb5;
 }
+
+.logos {
+  height: 30px;
+}
