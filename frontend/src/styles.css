@@ -20,14 +20,14 @@
 .btn-main:active,
 .open .dropdown-toggle.btn-main,
 .btn-outline-main:hover,
-.btn-outline-main:focus{
+.btn-outline-main:focus {
   color: #FFFFFF;
   background-color: #0f9eb5;
   border-color: #0F9EB5;
 }
 
 .btn-main:focus,
-.btn-outline-main:focus{
+.btn-outline-main:focus {
   box-shadow: 0 0 0 0.2rem rgba(15, 158, 181, 0.3);
 }
 
@@ -72,4 +72,8 @@ a, a:hover {
 
 .logos {
   height: 30px;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.2rem rgba(15, 158, 181, 0.3);
 }
