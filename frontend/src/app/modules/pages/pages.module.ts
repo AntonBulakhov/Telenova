@@ -6,11 +6,12 @@ import {BrowserModule} from "@angular/platform-browser";
 import {RouterModule} from "@angular/router";
 import { ProfileComponent } from './profile/profile.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { MobiletariffComponent } from './mobiletariff/mobiletariff.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, ProfileComponent, RegistrationComponent],
+  declarations: [HomeComponent, ProfileComponent, RegistrationComponent, MobiletariffComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -20,7 +21,8 @@ import { RegistrationComponent } from './registration/registration.component';
   exports: [
     HomeComponent,
     ProfileComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    MobiletariffComponent,
   ]
 })
 export class PagesModule { }
