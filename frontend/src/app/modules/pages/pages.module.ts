@@ -7,11 +7,12 @@ import {RouterModule} from "@angular/router";
 import { ProfileComponent } from './profile/profile.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { MobiletariffComponent } from './mobiletariff/mobiletariff.component';
+import { InternetComponent } from './internet/internet.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, ProfileComponent, RegistrationComponent, MobiletariffComponent],
+  declarations: [HomeComponent, ProfileComponent, RegistrationComponent, MobiletariffComponent, InternetComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -23,6 +24,7 @@ import { MobiletariffComponent } from './mobiletariff/mobiletariff.component';
     ProfileComponent,
     RegistrationComponent,
     MobiletariffComponent,
+    InternetComponent
   ]
 })
 export class PagesModule { }

@@ -4,6 +4,7 @@ import {HomeComponent} from "./modules/pages/home/home.component";
 import {ProfileComponent} from "./modules/pages/profile/profile.component";
 import {RegistrationComponent} from "./modules/pages/registration/registration.component";
 import {MobiletariffComponent} from "./modules/pages/mobiletariff/mobiletariff.component";
+import {InternetComponent} from "./modules/pages/internet/internet.component";
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent},
   {path: 'registration', component: RegistrationComponent},
   {path: 'mobiletariff', component: MobiletariffComponent},
+  {path: 'internet', component: InternetComponent},
 ];
 
 @NgModule({
