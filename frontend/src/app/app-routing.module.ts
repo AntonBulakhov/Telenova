@@ -5,6 +5,7 @@ import {ProfileComponent} from "./modules/pages/profile/profile.component";
 import {RegistrationComponent} from "./modules/pages/registration/registration.component";
 import {MobiletariffComponent} from "./modules/pages/mobiletariff/mobiletariff.component";
 import {InternetComponent} from "./modules/pages/internet/internet.component";
+import {TariffComponent} from "./modules/pages/tariff/tariff.component";
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'registration', component: RegistrationComponent},
   {path: 'mobiletariff', component: MobiletariffComponent},
   {path: 'internet', component: InternetComponent},
+  {path: 'tariff', component: TariffComponent},
 ];
 
 @NgModule({

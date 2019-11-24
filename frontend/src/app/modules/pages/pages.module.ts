@@ -8,11 +8,18 @@ import { ProfileComponent } from './profile/profile.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { MobiletariffComponent } from './mobiletariff/mobiletariff.component';
 import { InternetComponent } from './internet/internet.component';
+import { TariffComponent } from './tariff/tariff.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, ProfileComponent, RegistrationComponent, MobiletariffComponent, InternetComponent],
+  declarations: [
+    HomeComponent,
+    ProfileComponent,
+    RegistrationComponent,
+    MobiletariffComponent,
+    InternetComponent,
+    TariffComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -24,7 +31,8 @@ import { InternetComponent } from './internet/internet.component';
     ProfileComponent,
     RegistrationComponent,
     MobiletariffComponent,
-    InternetComponent
+    InternetComponent,
+    TariffComponent,
   ]
 })
 export class PagesModule { }

@@ -1,0 +1,18 @@
+.tariff-back {
+  height: 400px;
+  background-image: url("/assets/img/tariff-image.png");
+}
+
+.tariff-color {
+  background-color: #0f9eb5;
+}
+
+.icon-img {
+  height: 140px;
+  width: 140px;
+}
+
+.tariff-button {
+  font-size: 2em;
+  font-weight: bold;
+}
