@@ -11,6 +11,7 @@ import { InternetComponent } from './internet/internet.component';
 import { TariffComponent } from './tariff/tariff.component';
 import { MobilesubmitComponent } from './mobilesubmit/mobilesubmit.component';
 import { InternetsubmitComponent } from './internetsubmit/internetsubmit.component';
+import { RequestsComponent } from './requests/requests.component';
 
 
 
@@ -23,7 +24,8 @@ import { InternetsubmitComponent } from './internetsubmit/internetsubmit.compone
     InternetComponent,
     TariffComponent,
     MobilesubmitComponent,
-    InternetsubmitComponent],
+    InternetsubmitComponent,
+    RequestsComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -38,7 +40,8 @@ import { InternetsubmitComponent } from './internetsubmit/internetsubmit.compone
     InternetComponent,
     TariffComponent,
     MobilesubmitComponent,
-    InternetsubmitComponent
+    InternetsubmitComponent,
+    RequestsComponent
   ]
 })
 export class PagesModule { }
