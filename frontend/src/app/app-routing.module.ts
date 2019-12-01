@@ -7,6 +7,7 @@ import {MobiletariffComponent} from "./modules/pages/mobiletariff/mobiletariff.c
 import {InternetComponent} from "./modules/pages/internet/internet.component";
 import {TariffComponent} from "./modules/pages/tariff/tariff.component";
 import {MobilesubmitComponent} from "./modules/pages/mobilesubmit/mobilesubmit.component";
+import {InternetsubmitComponent} from "./modules/pages/internetsubmit/internetsubmit.component";
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'internet', component: InternetComponent},
   {path: 'tariff', component: TariffComponent},
   {path: 'mobile/submit', component: MobilesubmitComponent},
+  {path: 'internet/submit', component: InternetsubmitComponent},
 ];
 
 @NgModule({
