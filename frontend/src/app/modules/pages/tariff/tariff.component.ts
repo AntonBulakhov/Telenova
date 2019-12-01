@@ -12,4 +12,7 @@ export class TariffComponent implements OnInit {
   ngOnInit() {
   }
 
+  onConnectClicked() {
+
+  }
 }

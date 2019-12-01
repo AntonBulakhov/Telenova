@@ -1,0 +1,106 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Тариф</th>
+      <th scope="col">Характеристики</th>
+      <th scope="col">Абон. плата</th>
+      <th scope="col">Подключение</th>
+      <th scope="col">Номер телефона</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <h5>Название тарифа</h5>
+        <p>краткое описание тарифа</p>
+      </td>
+      <td>
+        <ul>
+          <li>Характеристика 1</li>
+          <li>Характеристика 2</li>
+          <li>Характеристика 3</li>
+        </ul>
+      </td>
+      <td>9р./мес.</td>
+      <td>5р.</td>
+      <td>+375 11 111-11-11</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="container-fluid d-flex justify-content-end">
+  <div class="form-group">
+    <label for="sum" class="mb-0">Итого:</label>
+    <h2 id="sum">5р.</h2>
+  </div>
+</div>
+
+<div class="container-fluid d-flex justify-content-around-between mb-5">
+  <div class="col-8 justify-content-start">
+    <a href="#">Договор пользовательского соглашения</a>
+  </div>
+  <div class="col-4 justify-content-end d-flex mr-0 pr-0">
+    <button class="btn btn-main" data-toggle="modal" data-target="#modalPayment">Оплатить новый тариф</button>
+  </div>
+</div>
+
+<!--Payment modal-->
+<div class="modal fade" id="modalPayment" tabindex="-1" role="dialog" aria-labelledby="modalPaymentLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalPaymentLabel">Окно оплаты</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label>Полное имя (на карте)</label>
+          <input type="text" name="username" placeholder="Ivan Ivanov" class="form-control" required>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md">
+            <label>Номер карты</label>
+            <input type="text" name="cardNumber" placeholder="Ваш номер карты" class="form-control" required>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8">
+            <div class="form-group">
+              <label><span class="hidden-xs">Дата действительности</span></label>
+              <div class="input-group">
+                <input type="text" placeholder="MM" name="" class="form-control" maxlength="2" pattern="\d{2}"
+                       required>
+                <input type="text" placeholder="YY" name="" class="form-control" maxlength="2" pattern="\d{2}"
+                       required>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="form-group mb-4">
+              <label>CVС
+              </label>
+              <input type="text" required class="form-control" maxlength="3" pattern="\d{3}">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-main">Оплатить</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-social></app-social>
+<app-footer></app-footer>

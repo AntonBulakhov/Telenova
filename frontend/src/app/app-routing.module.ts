@@ -6,6 +6,7 @@ import {RegistrationComponent} from "./modules/pages/registration/registration.c
 import {MobiletariffComponent} from "./modules/pages/mobiletariff/mobiletariff.component";
 import {InternetComponent} from "./modules/pages/internet/internet.component";
 import {TariffComponent} from "./modules/pages/tariff/tariff.component";
+import {MobilesubmitComponent} from "./modules/pages/mobilesubmit/mobilesubmit.component";
 
 
 const routes: Routes = [
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'mobiletariff', component: MobiletariffComponent},
   {path: 'internet', component: InternetComponent},
   {path: 'tariff', component: TariffComponent},
+  {path: 'mobile/submit', component: MobilesubmitComponent},
 ];
 
 @NgModule({

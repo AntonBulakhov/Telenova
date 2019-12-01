@@ -9,6 +9,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { MobiletariffComponent } from './mobiletariff/mobiletariff.component';
 import { InternetComponent } from './internet/internet.component';
 import { TariffComponent } from './tariff/tariff.component';
+import { MobilesubmitComponent } from './mobilesubmit/mobilesubmit.component';
 
 
 
@@ -19,7 +20,8 @@ import { TariffComponent } from './tariff/tariff.component';
     RegistrationComponent,
     MobiletariffComponent,
     InternetComponent,
-    TariffComponent],
+    TariffComponent,
+    MobilesubmitComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -33,6 +35,7 @@ import { TariffComponent } from './tariff/tariff.component';
     MobiletariffComponent,
     InternetComponent,
     TariffComponent,
+    MobilesubmitComponent
   ]
 })
 export class PagesModule { }
