@@ -1,16 +1,18 @@
-package com.telenova.backend.entity;
+package com.telenova.backend.database.entity;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "offer", schema = "telenovadb", catalog = "")
+@IdClass(OfferEntityPK.class)
 public class OfferEntity {
     private int id;
+    private int specificationId;
+    private int offerStatusId;
     private String name;
     private double price;
-    private SpecificationEntity specificationBySpecificationId;
-    private OfferCategoryEntity offerCategoryByOfferCategoryId;
-    private OfferStatusEntity offerStatusByOfferStatusId;
+    private SpecificationEntity specification;
+    private OfferStatusEntity offerStatus;
 
     @Id
     @Column(name = "id")
@@ -20,6 +22,26 @@ public class OfferEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Id
+    @Column(name = "specification_id")
+    public int getSpecificationId() {
+        return specificationId;
+    }
+
+    public void setSpecificationId(int specificationId) {
+        this.specificationId = specificationId;
+    }
+
+    @Id
+    @Column(name = "offer_status_id")
+    public int getOfferStatusId() {
+        return offerStatusId;
+    }
+
+    public void setOfferStatusId(int offerStatusId) {
+        this.offerStatusId = offerStatusId;
     }
 
     @Basic
@@ -50,6 +72,8 @@ public class OfferEntity {
         OfferEntity that = (OfferEntity) o;
 
         if (id != that.id) return false;
+        if (specificationId != that.specificationId) return false;
+        if (offerStatusId != that.offerStatusId) return false;
         if (Double.compare(that.price, price) != 0) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
 
@@ -61,6 +85,8 @@ public class OfferEntity {
         int result;
         long temp;
         result = id;
+        result = 31 * result + specificationId;
+        result = 31 * result + offerStatusId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         temp = Double.doubleToLongBits(price);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
@@ -69,31 +95,21 @@ public class OfferEntity {
 
     @ManyToOne
     @JoinColumn(name = "specification_id", referencedColumnName = "id", nullable = false)
-    public SpecificationEntity getSpecificationBySpecificationId() {
-        return specificationBySpecificationId;
+    public SpecificationEntity getSpecification() {
+        return specification;
     }
 
-    public void setSpecificationBySpecificationId(SpecificationEntity specificationBySpecificationId) {
-        this.specificationBySpecificationId = specificationBySpecificationId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "offer_category_id", referencedColumnName = "id", nullable = false)
-    public OfferCategoryEntity getOfferCategoryByOfferCategoryId() {
-        return offerCategoryByOfferCategoryId;
-    }
-
-    public void setOfferCategoryByOfferCategoryId(OfferCategoryEntity offerCategoryByOfferCategoryId) {
-        this.offerCategoryByOfferCategoryId = offerCategoryByOfferCategoryId;
+    public void setSpecification(SpecificationEntity specification) {
+        this.specification = specification;
     }
 
     @ManyToOne
     @JoinColumn(name = "offer_status_id", referencedColumnName = "id", nullable = false)
-    public OfferStatusEntity getOfferStatusByOfferStatusId() {
-        return offerStatusByOfferStatusId;
+    public OfferStatusEntity getOfferStatus() {
+        return offerStatus;
     }
 
-    public void setOfferStatusByOfferStatusId(OfferStatusEntity offerStatusByOfferStatusId) {
-        this.offerStatusByOfferStatusId = offerStatusByOfferStatusId;
+    public void setOfferStatus(OfferStatusEntity offerStatus) {
+        this.offerStatus = offerStatus;
     }
 }

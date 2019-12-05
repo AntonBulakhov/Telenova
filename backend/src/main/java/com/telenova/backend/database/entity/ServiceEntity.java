@@ -1,4 +1,4 @@
-package com.telenova.backend.entity;
+package com.telenova.backend.database.entity;
 
 import javax.persistence.*;
 
@@ -9,8 +9,9 @@ public class ServiceEntity {
     private int id;
     private int userId;
     private int offerId;
-    private BalanceEntity balanceByBalanceId;
-    private AddressEntity addressByAddressId;
+    private BalanceEntity balance;
+    private AddressEntity address;
+    private ServiceStatusEntity service;
 
     @Id
     @Column(name = "id")
@@ -66,21 +67,31 @@ public class ServiceEntity {
 
     @ManyToOne
     @JoinColumn(name = "balance_id", referencedColumnName = "id", nullable = false)
-    public BalanceEntity getBalanceByBalanceId() {
-        return balanceByBalanceId;
+    public BalanceEntity getBalance() {
+        return balance;
     }
 
-    public void setBalanceByBalanceId(BalanceEntity balanceByBalanceId) {
-        this.balanceByBalanceId = balanceByBalanceId;
+    public void setBalance(BalanceEntity balance) {
+        this.balance = balance;
     }
 
     @ManyToOne
     @JoinColumn(name = "address_id", referencedColumnName = "id")
-    public AddressEntity getAddressByAddressId() {
-        return addressByAddressId;
+    public AddressEntity getAddress() {
+        return address;
     }
 
-    public void setAddressByAddressId(AddressEntity addressByAddressId) {
-        this.addressByAddressId = addressByAddressId;
+    public void setAddress(AddressEntity address) {
+        this.address = address;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "service_status_id", referencedColumnName = "id", nullable = false)
+    public ServiceStatusEntity getService() {
+        return service;
+    }
+
+    public void setService(ServiceStatusEntity service) {
+        this.service = service;
     }
 }

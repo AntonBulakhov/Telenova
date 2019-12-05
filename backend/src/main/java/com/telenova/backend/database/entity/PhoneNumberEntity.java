@@ -1,16 +1,18 @@
-package com.telenova.backend.entity;
+package com.telenova.backend.database.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import java.io.Serializable;
+import javax.persistence.*;
 
-public class PhoneNumberEntityPK implements Serializable {
+@Entity
+@Table(name = "phone_number", schema = "telenovadb", catalog = "")
+@IdClass(PhoneNumberEntityPK.class)
+public class PhoneNumberEntity {
     private int id;
     private int serviceId;
     private int userId;
+    private String honeNumber;
 
-    @Column(name = "id")
     @Id
+    @Column(name = "id")
     public int getId() {
         return id;
     }
@@ -19,8 +21,8 @@ public class PhoneNumberEntityPK implements Serializable {
         this.id = id;
     }
 
-    @Column(name = "service_id")
     @Id
+    @Column(name = "service_id")
     public int getServiceId() {
         return serviceId;
     }
@@ -29,8 +31,8 @@ public class PhoneNumberEntityPK implements Serializable {
         this.serviceId = serviceId;
     }
 
-    @Column(name = "user_id")
     @Id
+    @Column(name = "user_id")
     public int getUserId() {
         return userId;
     }
@@ -39,16 +41,27 @@ public class PhoneNumberEntityPK implements Serializable {
         this.userId = userId;
     }
 
+    @Basic
+    @Column(name = "hone_number")
+    public String getHoneNumber() {
+        return honeNumber;
+    }
+
+    public void setHoneNumber(String honeNumber) {
+        this.honeNumber = honeNumber;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PhoneNumberEntityPK that = (PhoneNumberEntityPK) o;
+        PhoneNumberEntity that = (PhoneNumberEntity) o;
 
         if (id != that.id) return false;
         if (serviceId != that.serviceId) return false;
         if (userId != that.userId) return false;
+        if (honeNumber != null ? !honeNumber.equals(that.honeNumber) : that.honeNumber != null) return false;
 
         return true;
     }
@@ -58,6 +71,7 @@ public class PhoneNumberEntityPK implements Serializable {
         int result = id;
         result = 31 * result + serviceId;
         result = 31 * result + userId;
+        result = 31 * result + (honeNumber != null ? honeNumber.hashCode() : 0);
         return result;
     }
 }

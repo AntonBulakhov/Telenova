@@ -1,4 +1,4 @@
-package com.telenova.backend.entity;
+package com.telenova.backend.database.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Id;

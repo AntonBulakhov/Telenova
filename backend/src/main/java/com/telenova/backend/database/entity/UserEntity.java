@@ -1,18 +1,21 @@
-package com.telenova.backend.entity;
+package com.telenova.backend.database.entity;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "user", schema = "telenovadb", catalog = "")
+@IdClass(UserEntityPK.class)
 public class UserEntity {
     private int id;
+    private int roleId;
+    private int userStatusId;
     private String login;
     private String password;
     private String email;
     private String name;
     private String surname;
-    private RoleEntity roleByRoleId;
-    private UserStatusEntity userStatusByUserStatusId;
+    private RoleEntity role;
+    private UserStatusEntity userStatus;
 
     @Id
     @Column(name = "id")
@@ -22,6 +25,26 @@ public class UserEntity {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Id
+    @Column(name = "role_id")
+    public int getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(int roleId) {
+        this.roleId = roleId;
+    }
+
+    @Id
+    @Column(name = "user_status_id")
+    public int getUserStatusId() {
+        return userStatusId;
+    }
+
+    public void setUserStatusId(int userStatusId) {
+        this.userStatusId = userStatusId;
     }
 
     @Basic
@@ -82,6 +105,8 @@ public class UserEntity {
         UserEntity that = (UserEntity) o;
 
         if (id != that.id) return false;
+        if (roleId != that.roleId) return false;
+        if (userStatusId != that.userStatusId) return false;
         if (login != null ? !login.equals(that.login) : that.login != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
@@ -94,6 +119,8 @@ public class UserEntity {
     @Override
     public int hashCode() {
         int result = id;
+        result = 31 * result + roleId;
+        result = 31 * result + userStatusId;
         result = 31 * result + (login != null ? login.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         result = 31 * result + (email != null ? email.hashCode() : 0);
@@ -104,21 +131,21 @@ public class UserEntity {
 
     @ManyToOne
     @JoinColumn(name = "role_id", referencedColumnName = "id", nullable = false)
-    public RoleEntity getRoleByRoleId() {
-        return roleByRoleId;
+    public RoleEntity getRole() {
+        return role;
     }
 
-    public void setRoleByRoleId(RoleEntity roleByRoleId) {
-        this.roleByRoleId = roleByRoleId;
+    public void setRole(RoleEntity role) {
+        this.role = role;
     }
 
     @ManyToOne
     @JoinColumn(name = "user_status_id", referencedColumnName = "id", nullable = false)
-    public UserStatusEntity getUserStatusByUserStatusId() {
-        return userStatusByUserStatusId;
+    public UserStatusEntity getUserStatus() {
+        return userStatus;
     }
 
-    public void setUserStatusByUserStatusId(UserStatusEntity userStatusByUserStatusId) {
-        this.userStatusByUserStatusId = userStatusByUserStatusId;
+    public void setUserStatus(UserStatusEntity userStatus) {
+        this.userStatus = userStatus;
     }
 }

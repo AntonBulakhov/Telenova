@@ -1,10 +1,10 @@
-package com.telenova.backend.entity;
+package com.telenova.backend.database.entity;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "specification", schema = "telenovadb", catalog = "")
-public class SpecificationEntity {
+@Table(name = "user_status", schema = "telenovadb", catalog = "")
+public class UserStatusEntity {
     private int id;
     private String name;
 
@@ -33,7 +33,7 @@ public class SpecificationEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        SpecificationEntity that = (SpecificationEntity) o;
+        UserStatusEntity that = (UserStatusEntity) o;
 
         if (id != that.id) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;

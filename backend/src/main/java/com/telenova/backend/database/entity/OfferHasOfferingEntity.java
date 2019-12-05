@@ -1,15 +1,16 @@
-package com.telenova.backend.entity;
+package com.telenova.backend.database.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Id;
-import java.io.Serializable;
+import javax.persistence.*;
 
-public class OfferHasOfferingEntityPK implements Serializable {
+@Entity
+@Table(name = "offer_has_offering", schema = "telenovadb", catalog = "")
+@IdClass(OfferHasOfferingEntityPK.class)
+public class OfferHasOfferingEntity {
     private int offerId;
     private int offeringId;
 
-    @Column(name = "offer_id")
     @Id
+    @Column(name = "offer_id")
     public int getOfferId() {
         return offerId;
     }
@@ -18,8 +19,8 @@ public class OfferHasOfferingEntityPK implements Serializable {
         this.offerId = offerId;
     }
 
-    @Column(name = "offering_id")
     @Id
+    @Column(name = "offering_id")
     public int getOfferingId() {
         return offeringId;
     }
@@ -33,7 +34,7 @@ public class OfferHasOfferingEntityPK implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        OfferHasOfferingEntityPK that = (OfferHasOfferingEntityPK) o;
+        OfferHasOfferingEntity that = (OfferHasOfferingEntity) o;
 
         if (offerId != that.offerId) return false;
         if (offeringId != that.offeringId) return false;
