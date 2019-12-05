@@ -1,6 +1,12 @@
 package com.telenova.backend.database.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "service", schema = "telenovadb", catalog = "")
@@ -11,7 +17,7 @@ public class ServiceEntity {
     private int offerId;
     private BalanceEntity balance;
     private AddressEntity address;
-    private ServiceStatusEntity service;
+    private ServiceStatusEntity serviceStatus;
 
     @Id
     @Column(name = "id")
@@ -87,11 +93,11 @@ public class ServiceEntity {
 
     @ManyToOne
     @JoinColumn(name = "service_status_id", referencedColumnName = "id", nullable = false)
-    public ServiceStatusEntity getService() {
-        return service;
+    public ServiceStatusEntity getServiceStatus() {
+        return serviceStatus;
     }
 
-    public void setService(ServiceStatusEntity service) {
-        this.service = service;
+    public void setServiceStatus(ServiceStatusEntity serviceStatus) {
+        this.serviceStatus = serviceStatus;
     }
 }

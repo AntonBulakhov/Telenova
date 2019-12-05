@@ -1,6 +1,11 @@
 package com.telenova.backend.database.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.IdClass;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "phone_number", schema = "telenovadb", catalog = "")

@@ -1,16 +1,20 @@
 package com.telenova.backend.database.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "offer", schema = "telenovadb", catalog = "")
-@IdClass(OfferEntityPK.class)
 public class OfferEntity {
     private int id;
-    private int specificationId;
-    private int offerStatusId;
     private String name;
     private double price;
+    private String description;
     private SpecificationEntity specification;
     private OfferStatusEntity offerStatus;
 
@@ -22,26 +26,6 @@ public class OfferEntity {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Id
-    @Column(name = "specification_id")
-    public int getSpecificationId() {
-        return specificationId;
-    }
-
-    public void setSpecificationId(int specificationId) {
-        this.specificationId = specificationId;
-    }
-
-    @Id
-    @Column(name = "offer_status_id")
-    public int getOfferStatusId() {
-        return offerStatusId;
-    }
-
-    public void setOfferStatusId(int offerStatusId) {
-        this.offerStatusId = offerStatusId;
     }
 
     @Basic
@@ -64,6 +48,16 @@ public class OfferEntity {
         this.price = price;
     }
 
+    @Basic
+    @Column(name = "description")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -72,10 +66,9 @@ public class OfferEntity {
         OfferEntity that = (OfferEntity) o;
 
         if (id != that.id) return false;
-        if (specificationId != that.specificationId) return false;
-        if (offerStatusId != that.offerStatusId) return false;
         if (Double.compare(that.price, price) != 0) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (description != null ? !description.equals(that.description) : that.description != null) return false;
 
         return true;
     }
@@ -85,11 +78,10 @@ public class OfferEntity {
         int result;
         long temp;
         result = id;
-        result = 31 * result + specificationId;
-        result = 31 * result + offerStatusId;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         temp = Double.doubleToLongBits(price);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (description != null ? description.hashCode() : 0);
         return result;
     }
 

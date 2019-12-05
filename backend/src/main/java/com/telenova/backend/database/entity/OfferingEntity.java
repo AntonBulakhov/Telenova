@@ -1,13 +1,17 @@
 package com.telenova.backend.database.entity;
 
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "offering", schema = "telenovadb", catalog = "")
-@IdClass(OfferingEntityPK.class)
 public class OfferingEntity {
     private int id;
-    private int specificationId;
     private String value;
     private SpecificationEntity specification;
     private ValueMeasureEntity valueMeasure;
@@ -20,16 +24,6 @@ public class OfferingEntity {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    @Id
-    @Column(name = "specification_id")
-    public int getSpecificationId() {
-        return specificationId;
-    }
-
-    public void setSpecificationId(int specificationId) {
-        this.specificationId = specificationId;
     }
 
     @Basic
@@ -50,7 +44,6 @@ public class OfferingEntity {
         OfferingEntity that = (OfferingEntity) o;
 
         if (id != that.id) return false;
-        if (specificationId != that.specificationId) return false;
         if (value != null ? !value.equals(that.value) : that.value != null) return false;
 
         return true;
@@ -59,7 +52,6 @@ public class OfferingEntity {
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + specificationId;
         result = 31 * result + (value != null ? value.hashCode() : 0);
         return result;
     }
