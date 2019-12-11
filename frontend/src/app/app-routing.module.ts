@@ -13,6 +13,7 @@ import {AdminmenuComponent} from "./modules/pages/adminmenu/adminmenu.component"
 import {MobileconfigurationComponent} from "./modules/pages/mobileconfiguration/mobileconfiguration.component";
 import {InternetconfigurationComponent} from "./modules/pages/internetconfiguration/internetconfiguration.component";
 import {OfferingsconfigurationComponent} from "./modules/pages/offeringsconfiguration/offeringsconfiguration.component";
+import {UsersComponent} from "./modules/pages/users/users.component";
 
 
 const routes: Routes = [
@@ -29,6 +30,7 @@ const routes: Routes = [
   {path: 'order/configuration/mobile', component: MobileconfigurationComponent},
   {path: 'order/configuration/internet', component: InternetconfigurationComponent},
   {path: 'offering/configuration', component: OfferingsconfigurationComponent},
+  {path: 'users', component: UsersComponent},
 ];
 
 @NgModule({

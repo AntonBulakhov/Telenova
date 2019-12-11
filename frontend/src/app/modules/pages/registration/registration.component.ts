@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {StorageService} from "../../../services/storage/storage.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-registration',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor() { }
+  public roleId: string;
+
+  constructor(private storageService: StorageService,
+              private router: Router) {
+  }
 
   ngOnInit() {
+    this.roleId = this.storageService.getNewUserRoleId();
   }
 
 }

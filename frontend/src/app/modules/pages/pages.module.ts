@@ -16,6 +16,7 @@ import { AdminmenuComponent } from './adminmenu/adminmenu.component';
 import { MobileconfigurationComponent } from './mobileconfiguration/mobileconfiguration.component';
 import { InternetconfigurationComponent } from './internetconfiguration/internetconfiguration.component';
 import { OfferingsconfigurationComponent } from './offeringsconfiguration/offeringsconfiguration.component';
+import { UsersComponent } from './users/users.component';
 
 
 
@@ -33,7 +34,8 @@ import { OfferingsconfigurationComponent } from './offeringsconfiguration/offeri
     AdminmenuComponent,
     MobileconfigurationComponent,
     InternetconfigurationComponent,
-    OfferingsconfigurationComponent],
+    OfferingsconfigurationComponent,
+    UsersComponent],
   imports: [
     CommonModule,
     SharedModule,

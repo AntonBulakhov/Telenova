@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb" [ngSwitch]="roleId">
+    <li class="breadcrumb-item"><a routerLink="/adminmenu">Управление</a></li>
+    <li class="breadcrumb-item active" aria-current="page" *ngSwitchCase="2">Администраторы</li>
+    <li class="breadcrumb-item active" aria-current="page" *ngSwitchCase="3">Работники</li>
+    <li class="breadcrumb-item active" aria-current="page" *ngSwitchCase="4">Клиенты</li>
+  </ol>
+</nav>
+
+<div class="container-fluid mt-3 mb-5">
+  <div class="container-fluid mt-3 row" [ngSwitch]="roleId">
+    <h4 *ngSwitchCase="2">Администраторы</h4>
+    <h4 *ngSwitchCase="3">Работники</h4>
+    <h4 *ngSwitchCase="4">Клиенты</h4>
+    <button class="btn btn-link" *ngIf="roleId != 4" (click)="registerUser(roleId)">Зарегестрировать</button>
+  </div>
+  <table class="table table-hover mt-3 mb-5">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Имя</th>
+      <th scope="col">Фамилия</th>
+      <th scope="col">Email</th>
+      <th scope="col">Статус</th>
+      <th scope="col" *ngIf="roleId == 4">Задолженность</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Юзер</td>
+      <td>Юзерович</td>
+      <td>user@telenova.com</td>
+      <td>Активен</td>
+      <td *ngIf="roleId == 4">0 р.</td>
+      <td>
+        <button class="btn btn-main">Разблокировать</button>
+        <a href="">Заблокировать</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-social></app-social>
+<app-footer></app-footer>
