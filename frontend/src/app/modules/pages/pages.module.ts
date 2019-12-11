@@ -17,6 +17,7 @@ import { MobileconfigurationComponent } from './mobileconfiguration/mobileconfig
 import { InternetconfigurationComponent } from './internetconfiguration/internetconfiguration.component';
 import { OfferingsconfigurationComponent } from './offeringsconfiguration/offeringsconfiguration.component';
 import { UsersComponent } from './users/users.component';
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -36,12 +37,13 @@ import { UsersComponent } from './users/users.component';
     InternetconfigurationComponent,
     OfferingsconfigurationComponent,
     UsersComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    BrowserModule,
-    RouterModule,
-  ],
+    imports: [
+        CommonModule,
+        SharedModule,
+        BrowserModule,
+        RouterModule,
+        FormsModule,
+    ],
   exports: [
     HomeComponent,
     ProfileComponent,

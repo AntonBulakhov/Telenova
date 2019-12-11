@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface OfferHasOfferingEntityRepository extends CrudRepository<OfferHasOfferingEntity, Integer> {
     List<OfferHasOfferingEntity> getOfferHasOfferingEntitiesByOfferId(Integer offerId);
+    void deleteAllByOfferingId(Integer id);
 }

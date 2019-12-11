@@ -14,7 +14,7 @@ public class PhoneNumberEntity {
     private int id;
     private int serviceId;
     private int userId;
-    private String phoneNumber;
+    private String honeNumber;
 
     @Id
     @Column(name = "id")
@@ -48,12 +48,12 @@ public class PhoneNumberEntity {
 
     @Basic
     @Column(name = "hone_number")
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getHoneNumber() {
+        return honeNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setHoneNumber(String honeNumber) {
+        this.honeNumber = honeNumber;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class PhoneNumberEntity {
         if (id != that.id) return false;
         if (serviceId != that.serviceId) return false;
         if (userId != that.userId) return false;
-        if (phoneNumber != null ? !phoneNumber.equals(that.phoneNumber) : that.phoneNumber != null) return false;
+        if (honeNumber != null ? !honeNumber.equals(that.honeNumber) : that.honeNumber != null) return false;
 
         return true;
     }
@@ -76,7 +76,7 @@ public class PhoneNumberEntity {
         int result = id;
         result = 31 * result + serviceId;
         result = 31 * result + userId;
-        result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
+        result = 31 * result + (honeNumber != null ? honeNumber.hashCode() : 0);
         return result;
     }
 }

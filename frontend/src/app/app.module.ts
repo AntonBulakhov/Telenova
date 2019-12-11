@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import {PagesModule} from "./modules/pages/pages.module";
 import {HttpClientModule} from "@angular/common/http";
 import {StorageService} from "./services/storage/storage.service";
+import {OfferingService} from "./services/offering.service";
+import {SpecificationService} from "./services/specification.service";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import {StorageService} from "./services/storage/storage.service";
     HttpClientModule
   ],
   providers: [
-    StorageService
+    StorageService,
+    OfferingService,
+    SpecificationService
   ],
   bootstrap: [AppComponent]
 })
