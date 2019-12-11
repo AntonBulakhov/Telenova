@@ -81,3 +81,8 @@ a, a:hover {
 .color-main {
   color: #0f9eb5;
 }
+
+.btn-link {
+  cursor: pointer;
+  color: #0f9eb5;
+}

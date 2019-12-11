@@ -12,6 +12,9 @@ import { TariffComponent } from './tariff/tariff.component';
 import { MobilesubmitComponent } from './mobilesubmit/mobilesubmit.component';
 import { InternetsubmitComponent } from './internetsubmit/internetsubmit.component';
 import { RequestsComponent } from './requests/requests.component';
+import { AdminmenuComponent } from './adminmenu/adminmenu.component';
+import { MobileconfigurationComponent } from './mobileconfiguration/mobileconfiguration.component';
+import { InternetconfigurationComponent } from './internetconfiguration/internetconfiguration.component';
 
 
 
@@ -25,7 +28,10 @@ import { RequestsComponent } from './requests/requests.component';
     TariffComponent,
     MobilesubmitComponent,
     InternetsubmitComponent,
-    RequestsComponent],
+    RequestsComponent,
+    AdminmenuComponent,
+    MobileconfigurationComponent,
+    InternetconfigurationComponent],
   imports: [
     CommonModule,
     SharedModule,

@@ -9,6 +9,9 @@ import {TariffComponent} from "./modules/pages/tariff/tariff.component";
 import {MobilesubmitComponent} from "./modules/pages/mobilesubmit/mobilesubmit.component";
 import {InternetsubmitComponent} from "./modules/pages/internetsubmit/internetsubmit.component";
 import {RequestsComponent} from "./modules/pages/requests/requests.component";
+import {AdminmenuComponent} from "./modules/pages/adminmenu/adminmenu.component";
+import {MobileconfigurationComponent} from "./modules/pages/mobileconfiguration/mobileconfiguration.component";
+import {InternetconfigurationComponent} from "./modules/pages/internetconfiguration/internetconfiguration.component";
 
 
 const routes: Routes = [
@@ -21,6 +24,9 @@ const routes: Routes = [
   {path: 'mobile/submit', component: MobilesubmitComponent},
   {path: 'internet/submit', component: InternetsubmitComponent},
   {path: 'requests', component: RequestsComponent},
+  {path: 'adminmenu', component: AdminmenuComponent},
+  {path: 'order/configuration/mobile', component: MobileconfigurationComponent},
+  {path: 'order/configuration/internet', component: InternetconfigurationComponent},
 ];
 
 @NgModule({

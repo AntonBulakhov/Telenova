@@ -1,0 +1,100 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid mt-3">
+  <h4>Конфигурация интернет тарифов</h4>
+</div>
+<table class="table table-hover mt-3 mb-5">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Название</th>
+    <th scope="col">Скорость интернета</th>
+    <th scope="col">Оборудование</th>
+    <th scope="col">Приложение 1</th>
+    <th scope="col">Приложение 2</th>
+    <th scope="col">Цена</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th scope="row"></th>
+    <td>
+      <div class="form-group">
+        <input type="text" class="form-control" id="tariff" autocomplete="off">
+      </div>
+    </td>
+    <td>
+      <div class="form-group">
+        <select class="custom-select" id="internet1">
+          <option value="1">75 Мбит/с</option>
+          <option value="2">100 Мбит/с</option>
+          <option value="3">20 Мбит/с</option>
+        </select>
+      </div>
+    </td>
+    <td>
+      <div class="form-group">
+        <select class="custom-select mb-1" id="equipment1">
+          <option value="1">Роутер</option>
+          <option value="2">Wifi Маршрутизатор</option>
+          <option value="3">Усилитель сигнала</option>
+        </select>
+        <select class="custom-select" id="equipment2">
+          <option value="1">Роутер</option>
+          <option value="2">Wifi Маршрутизатор</option>
+          <option value="3">Усилитель сигнала</option>
+        </select>
+      </div>
+    </td>
+    <td>
+      <div class="form-group">
+        <select class="custom-select" id="offer1">
+          <option value="1">Dr. Web</option>
+          <option value="2">Подписка KinopoiskHD</option>
+          <option value="3">Подписка Yandex Plus</option>
+        </select>
+      </div>
+    </td>
+    <td>
+      <div class="form-group">
+        <select class="custom-select" id="offer2">
+          <option value="1">Dr. Web</option>
+          <option value="2">Подписка KinopoiskHD</option>
+          <option value="3">Подписка Yandex Plus</option>
+        </select>
+      </div>
+    </td>
+    <td>
+      <div class="form-group">
+        <input type="text" class="form-control" id="price" autocomplete="off">
+      </div>
+    </td>
+    <td>
+      <button class="btn btn-main">Создать</button>
+    </td>
+  </tr>
+  <tr>
+    <th scope="row">1</th>
+    <td>Название тарифа</td>
+    <td>до 100 Мбит/с</td>
+    <td>
+      <ul>
+        <li>Роутер</li>
+        <li>Wifi Маршрутизатор</li>
+      </ul>
+    </td>
+    <td>Dr. Web</td>
+    <td>Подписка KinopoiskHD</td>
+    <td>15.90 руб./мес.</td>
+    <td>
+      <button class="btn btn-main">Разблокировать</button>
+      <a href="">Заблокировать</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<app-social></app-social>
+<app-footer></app-footer>
+

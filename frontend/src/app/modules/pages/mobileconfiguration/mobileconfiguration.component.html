@@ -1,0 +1,85 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid mt-3">
+  <h4>Конфигурация мобильных тарифов</h4>
+</div>
+<table class="table table-hover mt-3 mb-5">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Название</th>
+    <th scope="col">Мобильный интернет</th>
+    <th scope="col">Минуты в сети</th>
+    <th scope="col">Минуты вне сети</th>
+    <th scope="col">Описание</th>
+    <th scope="col">Цена</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <th scope="row"></th>
+    <td>
+      <div class="form-group">
+        <input type="text" class="form-control" id="tariff" autocomplete="off">
+      </div>
+    </td>
+    <td>
+      <div class="form-group">
+        <select class="custom-select" id="internet1">
+          <option value="1">4</option>
+          <option value="2">8</option>
+          <option value="3">12</option>
+        </select>
+      </div>
+    </td>
+    <td>
+      <div class="form-group">
+        <select class="custom-select" id="minutesIn">
+          <option value="1">60</option>
+          <option value="2">120</option>
+          <option value="3">БЕЗЛИМИТ</option>
+        </select>
+      </div>
+    </td>
+    <td>
+      <div class="form-group">
+        <select class="custom-select" id="minutesOut">
+          <option value="1">60</option>
+          <option value="2">120</option>
+          <option value="3">БЕЗЛИМИТ</option>
+        </select>
+      </div>
+    </td>
+    <td>
+      <div class="form-group">
+        <textarea class="form-control" id="descr" aria-label="With textarea"></textarea>
+      </div>
+    </td>
+    <td>
+      <div class="form-group">
+        <input type="text" class="form-control" id="price" autocomplete="off">
+      </div>
+    </td>
+    <td>
+      <button class="btn btn-main">Создать</button>
+    </td>
+  </tr>
+  <tr>
+    <th scope="row">1</th>
+    <td>Название тарифа</td>
+    <td>8 Гб</td>
+    <td>БЕЗЛИМИТ</td>
+    <td>120 мин</td>
+    <td>Какое-то там описан...</td>
+    <td>9.80 руб./мес.</td>
+    <td>
+      <button class="btn btn-main">Разблокировать</button>
+      <a href="">Заблокировать</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<app-social></app-social>
+<app-footer></app-footer>

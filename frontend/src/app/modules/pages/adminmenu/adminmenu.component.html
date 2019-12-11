@@ -1,0 +1,44 @@
+<app-navbar></app-navbar>
+
+<div class="container-fluid mt-3 mb-5">
+  <div class="container-fluid mt-3">
+    <h4>Управление</h4>
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th scope="col">Управление пользователями</th>
+      <th scope="col">Новые заявки</th>
+      <th scope="col">Мобильные тарифы</th>
+      <th scope="col">Интернет тарифы</th>
+      <th scope="col">Предложения</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <td>
+        <ul>
+          <li class="btn-link">Администраторы</li>
+          <li class="btn-link">Работники</li>
+          <li class="btn-link">Клиенты</li>
+        </ul>
+      </td>
+      <td>
+        <button class="btn btn-link" routerLink="/requests">Просмотр новых заявок</button>
+      </td>
+      <td>
+        <button class="btn btn-link" routerLink="/order/configuration/mobile">Конфигурация мобильных тарифов</button>
+      </td>
+      <td>
+        <button class="btn btn-link" routerLink="/order/configuration/internet">Конфигурация интернет тарифов</button>
+      </td>
+      <td>
+        <button class="btn btn-link" >Конфигурация предложений</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-social></app-social>
+<app-footer></app-footer>
