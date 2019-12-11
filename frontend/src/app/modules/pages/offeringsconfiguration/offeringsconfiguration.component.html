@@ -35,7 +35,10 @@
     </tr>
     <tr *ngFor="let offering of groupedOfferings.mobileInternet, let i = index">
       <th scope="row">{{i + 1}}</th>
-      <td>{{offering.value}} {{offering.valueMeasure.measurement}}</td>
+      <td class="row">
+        <p>{{offering.value}}&nbsp;</p>
+        <p *ngIf="offering.valueMeasure.id != 4">{{offering.valueMeasure.measurement}}</p>
+      </td>
       <td>
         <button class="btn btn-link" (click)="deleteOffering(offering.id)">Удалить</button>
       </td>
@@ -66,7 +69,10 @@
     </tr>
     <tr *ngFor="let offering of groupedOfferings.mobileMinutesIn, let i = index">
       <th scope="row">{{i + 1}}</th>
-      <td>{{offering.value}} {{offering.valueMeasure.measurement}}</td>
+      <td class="row">
+        <p>{{offering.value}}&nbsp;</p>
+        <p *ngIf="offering.valueMeasure.id != 4">{{offering.valueMeasure.measurement}}</p>
+      </td>
       <td>
         <button class="btn btn-link" (click)="deleteOffering(offering.id)">Удалить</button>
       </td>
@@ -97,7 +103,10 @@
     </tr>
     <tr *ngFor="let offering of groupedOfferings.mobileMinutesOut, let i = index">
       <th scope="row">{{i + 1}}</th>
-      <td>{{offering.value}} {{offering.valueMeasure.measurement}}</td>
+      <td class="row">
+        <p>{{offering.value}}&nbsp;</p>
+        <p *ngIf="offering.valueMeasure.id != 4">{{offering.valueMeasure.measurement}}</p>
+      </td>
       <td>
         <button class="btn btn-link" (click)="deleteOffering(offering.id)">Удалить</button>
       </td>
@@ -134,7 +143,10 @@
     </tr>
     <tr *ngFor="let offering of groupedOfferings.internetSpeed, let i = index">
       <th scope="row">{{i + 1}}</th>
-      <td>до {{offering.value}} {{offering.valueMeasure.measurement}}</td>
+      <td class="row">
+        <p>до {{offering.value}}&nbsp;</p>
+        <p *ngIf="offering.valueMeasure.id != 4">{{offering.valueMeasure.measurement}}</p>
+      </td>
       <td>
         <button class="btn btn-link" (click)="deleteOffering(offering.id)">Удалить</button>
       </td>

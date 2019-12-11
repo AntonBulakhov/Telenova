@@ -42,7 +42,11 @@ export class OfferingsconfigurationComponent implements OnInit {
   createOffering(specId: string, typeId: string, measureId: string) {
     this.newOffering.specification = this.getSpecification(specId);
     this.newOffering.offeringType = this.getOfferingType(typeId);
-    this.newOffering.valueMeasure = this.getValueMeasure(measureId);
+    if(this.newOffering.value == 'БЕЗЛИМИТ') {
+      this.newOffering.valueMeasure = this.getValueMeasure('4');
+    } else {
+      this.newOffering.valueMeasure = this.getValueMeasure(measureId);
+    }
     this.offeringService.createOffering(this.newOffering).subscribe(value => {
       this.ngOnInit();
     });
