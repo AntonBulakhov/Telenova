@@ -17,4 +17,8 @@ public interface OfferingService {
     boolean createOffering(OfferingEntity offeringEntity);
 
     void deleteOffering(Integer id);
+
+    GroupedOfferings getGroupedOfferings(List<OfferingEntity> offerings);
+
+    GroupedOfferings getGroupedOfferingsBySpecId(Integer id);
 }

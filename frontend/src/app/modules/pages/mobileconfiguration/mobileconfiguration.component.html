@@ -15,9 +15,9 @@
   <tr>
     <th scope="col">#</th>
     <th scope="col">Название</th>
-    <th scope="col">Мобильный интернет</th>
-    <th scope="col">Минуты в сети</th>
-    <th scope="col">Минуты вне сети</th>
+    <th scope="col">Мобильный интернет (Гб.)</th>
+    <th scope="col">Минуты в сети (мин.)</th>
+    <th scope="col">Минуты вне сети (мин.)</th>
     <th scope="col">Описание</th>
     <th scope="col">Цена</th>
     <th scope="col"></th>
@@ -28,58 +28,63 @@
     <th scope="row"></th>
     <td>
       <div class="form-group">
-        <input type="text" class="form-control" id="tariff" autocomplete="off">
+        <input type="text" class="form-control" id="tariff" name="tariff" autocomplete="off" [(ngModel)]="newOffer.offer.name">
       </div>
     </td>
     <td>
       <div class="form-group">
-        <select class="custom-select" id="internet1">
-          <option value="1">4</option>
-          <option value="2">8</option>
-          <option value="3">12</option>
+        <select class="custom-select" id="internet1" name="internet1" [(ngModel)]="newOffer.mobileInternet">
+          <option *ngFor="let offering of groupedOfferings.mobileInternet" [ngValue]="offering">{{offering.value}}</option>
         </select>
       </div>
     </td>
     <td>
       <div class="form-group">
-        <select class="custom-select" id="minutesIn">
-          <option value="1">60</option>
-          <option value="2">120</option>
-          <option value="3">БЕЗЛИМИТ</option>
+        <select class="custom-select" id="minutesIn" name="minutesIn" [(ngModel)]="newOffer.mobileMinutesIn">
+          <option *ngFor="let offering of groupedOfferings.mobileMinutesIn" [ngValue]="offering">{{offering.value}}</option>
         </select>
       </div>
     </td>
     <td>
       <div class="form-group">
-        <select class="custom-select" id="minutesOut">
-          <option value="1">60</option>
-          <option value="2">120</option>
-          <option value="3">БЕЗЛИМИТ</option>
+        <select class="custom-select" id="minutesOut" name="minutesOut" [(ngModel)]="newOffer.mobileMinutesOut">
+          <option *ngFor="let offering of groupedOfferings.mobileMinutesOut" [ngValue]="offering">{{offering.value}}</option>
         </select>
       </div>
     </td>
     <td>
       <div class="form-group">
-        <textarea class="form-control" id="descr" aria-label="With textarea"></textarea>
+        <textarea class="form-control" id="descr" aria-label="With textarea" name="descr" [(ngModel)]="newOffer.offer.description"></textarea>
       </div>
     </td>
     <td>
       <div class="form-group">
-        <input type="text" class="form-control" id="price" autocomplete="off">
+        <input type="text" class="form-control" id="price" name="price" [(ngModel)]="newOffer.offer.price" autocomplete="off">
       </div>
     </td>
     <td>
-      <button class="btn btn-main">Создать</button>
+      <button class="btn btn-main" (click)="createOffer()">Создать</button>
     </td>
   </tr>
-  <tr>
-    <th scope="row">1</th>
-    <td>Название тарифа</td>
-    <td>8 Гб</td>
-    <td>БЕЗЛИМИТ</td>
-    <td>120 мин</td>
-    <td>Какое-то там описан...</td>
-    <td>9.80 руб./мес.</td>
+  <tr *ngFor="let offer of offers, let i = index">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{offer.offer.name}}</td>
+    <td>
+      <p class="d-inline">{{offer.mobileInternet.value}}&nbsp;</p>
+      <p class="d-inline" *ngIf="offer.mobileInternet.valueMeasure.id != 4">{{offer.mobileInternet.valueMeasure.measurement}}</p>
+    </td>
+    <td>
+      <p class="d-inline">{{offer.mobileMinutesIn.value}}&nbsp;</p>
+      <p class="d-inline" *ngIf="offer.mobileMinutesIn.valueMeasure.id != 4">{{offer.mobileMinutesIn.valueMeasure.measurement}}</p>
+    </td>
+    <td>
+      <p class="d-inline">{{offer.mobileMinutesOut.value}}&nbsp;</p>
+      <p class="d-inline"   *ngIf="offer.mobileMinutesOut.valueMeasure.id != 4">{{offer.mobileMinutesOut.valueMeasure.measurement}}</p>
+    </td>
+    <td>{{offer.offer.description}}</td>
+    <td>
+      <p>{{offer.offer.price}} руб./мес.</p>
+    </td>
     <td>
       <button class="btn btn-main">Разблокировать</button>
       <a href="">Заблокировать</a>

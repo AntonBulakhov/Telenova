@@ -19,6 +19,7 @@
     <th scope="col">Оборудование</th>
     <th scope="col">Приложение 1</th>
     <th scope="col">Приложение 2</th>
+    <th scope="col">Описание</th>
     <th scope="col">Цена</th>
     <th scope="col"></th>
   </tr>
@@ -28,72 +29,71 @@
     <th scope="row"></th>
     <td>
       <div class="form-group">
-        <input type="text" class="form-control" id="tariff" autocomplete="off">
+        <input type="text" class="form-control" id="tariff" autocomplete="off" name="tariff" [(ngModel)]="newOffer.offer.name">
       </div>
     </td>
     <td>
       <div class="form-group">
-        <select class="custom-select" id="internet1">
-          <option value="1">75 Мбит/с</option>
-          <option value="2">100 Мбит/с</option>
-          <option value="3">20 Мбит/с</option>
+        <select class="custom-select" id="internet1"  name="internet1" [(ngModel)]="newOffer.internetSpeed">
+          <option *ngFor="let offering of groupedOfferings.internetSpeed" [ngValue]="offering">{{offering.value}}</option>
         </select>
       </div>
     </td>
     <td>
       <div class="form-group">
-        <select class="custom-select mb-1" id="equipment1">
-          <option value="1">Роутер</option>
-          <option value="2">Wifi Маршрутизатор</option>
-          <option value="3">Усилитель сигнала</option>
+        <select class="custom-select mb-1" id="equipment1" name="equipment1" [(ngModel)]="newOffer.internetEquipment1">
+          <option *ngFor="let offering of groupedOfferings.internetEquipment" [ngValue]="offering">{{offering.value}}</option>
         </select>
-        <select class="custom-select" id="equipment2">
-          <option value="1">Роутер</option>
-          <option value="2">Wifi Маршрутизатор</option>
-          <option value="3">Усилитель сигнала</option>
+        <select class="custom-select" id="equipment2" name="equipment1" [(ngModel)]="newOffer.internetEquipment2">
+          <option *ngFor="let offering of groupedOfferings.internetEquipment" [ngValue]="offering">{{offering.value}}</option>
         </select>
       </div>
     </td>
     <td>
       <div class="form-group">
-        <select class="custom-select" id="offer1">
-          <option value="1">Dr. Web</option>
-          <option value="2">Подписка KinopoiskHD</option>
-          <option value="3">Подписка Yandex Plus</option>
+        <select class="custom-select" id="offer1" name="offer1" [(ngModel)]="newOffer.internetSoft1">
+          <option *ngFor="let offering of groupedOfferings.internetSoft" [ngValue]="offering">{{offering.value}}</option>
         </select>
       </div>
     </td>
     <td>
       <div class="form-group">
-        <select class="custom-select" id="offer2">
-          <option value="1">Dr. Web</option>
-          <option value="2">Подписка KinopoiskHD</option>
-          <option value="3">Подписка Yandex Plus</option>
+        <select class="custom-select" id="offer2" name="offer2" [(ngModel)]="newOffer.internetSoft2">
+          <option *ngFor="let offering of groupedOfferings.internetSoft" [ngValue]="offering">{{offering.value}}</option>
         </select>
       </div>
     </td>
     <td>
       <div class="form-group">
-        <input type="text" class="form-control" id="price" autocomplete="off">
+        <textarea class="form-control" id="descr" aria-label="With textarea" name="descr" [(ngModel)]="newOffer.offer.description"></textarea>
       </div>
     </td>
     <td>
-      <button class="btn btn-main">Создать</button>
+      <div class="form-group">
+        <input type="text" class="form-control" id="price" autocomplete="off" name="price" [(ngModel)]="newOffer.offer.price">
+      </div>
+    </td>
+    <td>
+      <button class="btn btn-main" (click)="createOffer()">Создать</button>
     </td>
   </tr>
-  <tr>
-    <th scope="row">1</th>
-    <td>Название тарифа</td>
-    <td>до 100 Мбит/с</td>
+  <tr *ngFor="let offer of offers, let i = index">
+    <th scope="row">{{i + 1}}</th>
+    <td>{{offer.offer.name}}</td>
+    <td>
+      <p class="d-inline">{{offer.internetSpeed.value}}&nbsp;</p>
+      <p class="d-inline" *ngIf="offer.internetSpeed.valueMeasure.id != 4">{{offer.internetSpeed.valueMeasure.measurement}}</p>
+    </td>
     <td>
       <ul>
-        <li>Роутер</li>
-        <li>Wifi Маршрутизатор</li>
+        <li>{{offer.internetEquipment1.value}}</li>
+        <li>{{offer.internetEquipment2.value}}</li>
       </ul>
     </td>
-    <td>Dr. Web</td>
-    <td>Подписка KinopoiskHD</td>
-    <td>15.90 руб./мес.</td>
+    <td>{{offer.internetSoft1.value}}</td>
+    <td>{{offer.internetSoft2.value}}</td>
+    <td>{{offer.offer.description}}</td>
+    <td>{{offer.offer.price}} руб./мес.</td>
     <td>
       <button class="btn btn-main">Разблокировать</button>
       <a href="">Заблокировать</a>

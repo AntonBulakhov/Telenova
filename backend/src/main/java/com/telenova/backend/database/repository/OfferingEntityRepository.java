@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface OfferingEntityRepository extends CrudRepository<OfferingEntity, Integer> {
     List<OfferingEntity> getAllByValueAndOfferingType(String value, OfferingTypeEntity offeringType);
+    List<OfferingEntity> getAllBySpecificationId(Integer id);
 }

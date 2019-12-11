@@ -47,6 +47,11 @@ public class OfferingController {
         offeringService.deleteOffering(id);
     }
 
+    @GetMapping("/specification/{id}")
+    public GroupedOfferings getGroupedOfferingsBySpecId(@PathVariable Integer id) {
+        return offeringService.getGroupedOfferingsBySpecId(id);
+    }
+
     @Autowired
     public void setOfferingService(OfferingService offeringService) {
         this.offeringService = offeringService;

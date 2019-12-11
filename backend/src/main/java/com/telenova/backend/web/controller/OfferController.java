@@ -1,9 +1,14 @@
 package com.telenova.backend.web.controller;
 
+import com.telenova.backend.database.entity.OfferStatusEntity;
 import com.telenova.backend.service.OfferService;
+import com.telenova.backend.web.dto.InternetOfferDto;
+import com.telenova.backend.web.dto.MobileOfferDto;
 import com.telenova.backend.web.dto.OfferDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,6 +23,31 @@ public class OfferController {
     @GetMapping("/mobile/main")
     public List<OfferDto> getMainOffers() {
         return offerService.getMainMobileOffers();
+    }
+
+    @GetMapping("/mobile/all")
+    public List<MobileOfferDto> getAllMobileOffers() {
+        return offerService.getAllMobileOffers();
+    }
+
+    @GetMapping("/internet/all")
+    public List<InternetOfferDto> getAllInternetOffers() {
+        return offerService.getAllInternetOffers();
+    }
+
+    @PostMapping("/mobile")
+    public Boolean createMobileOffer(@RequestBody MobileOfferDto mobileOfferDto) {
+        return offerService.createMobileOffer(mobileOfferDto);
+    }
+
+    @PostMapping("/internet")
+    public Boolean createMobileOffer(@RequestBody InternetOfferDto internetOfferDto) {
+        return offerService.createInternetOffer(internetOfferDto);
+    }
+
+    @GetMapping("/statuses")
+    public List<OfferStatusEntity> getAllStatuses() {
+        return offerService.getAllOfferStatuses();
     }
 
     @Autowired

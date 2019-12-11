@@ -33,4 +33,8 @@ export class OfferingService {
   deleteOffering(id: string): any {
     return this.http.delete("/api/offering/" + id);
   }
+
+  getGroupedOfferingsBySpecId(id: string): Observable<GroupedOfferingsModel> {
+    return this.http.get<GroupedOfferingsModel>("/api/offering/specification/" + id);
+  }
 }

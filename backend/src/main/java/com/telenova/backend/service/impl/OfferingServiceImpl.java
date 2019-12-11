@@ -28,8 +28,20 @@ public class OfferingServiceImpl implements OfferingService {
 
     @Override
     public GroupedOfferings getGroupedOfferingsByTypes() {
-        MultiValuedMap<Integer, OfferingEntity> multiValuedMap = new ArrayListValuedHashMap<>();
         List<OfferingEntity> offerings = (List<OfferingEntity>) offeringEntityRepository.findAll();
+
+        return getGroupedOfferings(offerings);
+    }
+
+    @Override
+    public GroupedOfferings getGroupedOfferingsBySpecId(Integer id) {
+        List<OfferingEntity> offerings = offeringEntityRepository.getAllBySpecificationId(id);
+        return getGroupedOfferings(offerings);
+    }
+
+    @Override
+    public GroupedOfferings getGroupedOfferings(List<OfferingEntity> offerings) {
+        MultiValuedMap<Integer, OfferingEntity> multiValuedMap = new ArrayListValuedHashMap<>();
         for (OfferingEntity offering : offerings) {
             multiValuedMap.put(offering.getOfferingType().getId(), offering);
         }
@@ -41,7 +53,6 @@ public class OfferingServiceImpl implements OfferingService {
         groupedOfferings.setInternetSpeed((List<OfferingEntity>) multiValuedMap.get(4));
         groupedOfferings.setInternetEquipment((List<OfferingEntity>) multiValuedMap.get(5));
         groupedOfferings.setInternetSoft((List<OfferingEntity>) multiValuedMap.get(6));
-
         return groupedOfferings;
     }
 
