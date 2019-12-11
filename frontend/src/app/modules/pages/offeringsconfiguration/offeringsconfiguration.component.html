@@ -1,0 +1,203 @@
+<app-navbar></app-navbar>
+
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/adminmenu">Управление</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Конфигурация предложений</li>
+  </ol>
+</nav>
+
+<!--Mobile offerings-->
+<div class="container-fluid mt-3">
+  <h4>Мобильные предложения</h4>
+</div>
+<div class="container-fluid row">
+  <table class="table table-hover ml-3 mt-3 mb-5 col border-right border-left">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Мобильный интернет</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>
+        <div class="form-group">
+          <input type="text" class="form-control" id="tariff" autocomplete="off">
+        </div>
+      </td>
+      <td>
+        <button class="btn btn-main">Создать</button>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">1</th>
+      <td>8 Гб</td>
+      <td>
+        <a href="">Удалить</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-hover mt-3 mb-5 col border-right">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Минуты в сети</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>
+        <div class="form-group">
+          <input type="text" class="form-control" id="minutesIn" autocomplete="off">
+        </div>
+      </td>
+      <td>
+        <button class="btn btn-main">Создать</button>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">1</th>
+      <td>120 мин</td>
+      <td>
+        <a href="">Удалить</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-hover mt-3 mb-5 col border-right">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Минуты вне сети</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>
+        <div class="form-group">
+          <input type="text" class="form-control" id="minutesOut" autocomplete="off">
+        </div>
+      </td>
+      <td>
+        <button class="btn btn-main">Создать</button>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">1</th>
+      <td>120 мин</td>
+      <td>
+        <a href="">Удалить</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<!--Internet offerings-->
+<div class="container-fluid mt-3">
+  <h4>Интернет предложения</h4>
+</div>
+<div class="container-fluid row">
+  <table class="table table-hover ml-3 mt-3 mb-5 col border-right border-left">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Скорость интернета</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>
+        <div class="form-group">
+          <input type="text" class="form-control" id="speed" autocomplete="off">
+        </div>
+      </td>
+      <td>
+        <button class="btn btn-main">Создать</button>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">1</th>
+      <td>до 75 Мбит/с</td>
+      <td>
+        <a href="">Удалить</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-hover mt-3 mb-5 col border-right">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Оборудование</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>
+        <div class="form-group">
+          <input type="text" class="form-control" id="equipment" autocomplete="off">
+        </div>
+      </td>
+      <td>
+        <button class="btn btn-main">Создать</button>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">1</th>
+      <td>Роутер</td>
+      <td>
+        <a href="">Удалить</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+
+  <table class="table table-hover mt-3 mb-5 col border-right">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Приложение</th>
+      <th scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+      <th scope="row"></th>
+      <td>
+        <div class="form-group">
+          <input type="text" class="form-control" id="offer" autocomplete="off">
+        </div>
+      </td>
+      <td>
+        <button class="btn btn-main">Создать</button>
+      </td>
+    </tr>
+    <tr>
+      <th scope="row">1</th>
+      <td>Dr. Web</td>
+      <td>
+        <a href="">Удалить</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-social></app-social>
+<app-footer></app-footer>

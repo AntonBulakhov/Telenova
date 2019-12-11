@@ -14,6 +14,7 @@ public class OfferingEntity {
     private int id;
     private String value;
     private SpecificationEntity specification;
+    private OfferingTypeEntity offeringType;
     private ValueMeasureEntity valueMeasure;
 
     @Id
@@ -64,6 +65,16 @@ public class OfferingEntity {
 
     public void setSpecification(SpecificationEntity specification) {
         this.specification = specification;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "offering_type_id", referencedColumnName = "id", nullable = false)
+    public OfferingTypeEntity getOfferingType() {
+        return offeringType;
+    }
+
+    public void setOfferingType(OfferingTypeEntity offeringType) {
+        this.offeringType = offeringType;
     }
 
     @ManyToOne

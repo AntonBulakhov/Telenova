@@ -8,7 +8,6 @@
     <thead>
     <tr>
       <th scope="col">Управление пользователями</th>
-      <th scope="col">Новые заявки</th>
       <th scope="col">Мобильные тарифы</th>
       <th scope="col">Интернет тарифы</th>
       <th scope="col">Предложения</th>
@@ -24,16 +23,13 @@
         </ul>
       </td>
       <td>
-        <button class="btn btn-link" routerLink="/requests">Просмотр новых заявок</button>
-      </td>
-      <td>
         <button class="btn btn-link" routerLink="/order/configuration/mobile">Конфигурация мобильных тарифов</button>
       </td>
       <td>
         <button class="btn btn-link" routerLink="/order/configuration/internet">Конфигурация интернет тарифов</button>
       </td>
       <td>
-        <button class="btn btn-link" >Конфигурация предложений</button>
+        <button class="btn btn-link" routerLink="/offering/configuration">Конфигурация предложений</button>
       </td>
     </tr>
     </tbody>

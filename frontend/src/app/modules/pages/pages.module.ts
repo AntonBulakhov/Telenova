@@ -15,6 +15,7 @@ import { RequestsComponent } from './requests/requests.component';
 import { AdminmenuComponent } from './adminmenu/adminmenu.component';
 import { MobileconfigurationComponent } from './mobileconfiguration/mobileconfiguration.component';
 import { InternetconfigurationComponent } from './internetconfiguration/internetconfiguration.component';
+import { OfferingsconfigurationComponent } from './offeringsconfiguration/offeringsconfiguration.component';
 
 
 
@@ -31,7 +32,8 @@ import { InternetconfigurationComponent } from './internetconfiguration/internet
     RequestsComponent,
     AdminmenuComponent,
     MobileconfigurationComponent,
-    InternetconfigurationComponent],
+    InternetconfigurationComponent,
+    OfferingsconfigurationComponent],
   imports: [
     CommonModule,
     SharedModule,
