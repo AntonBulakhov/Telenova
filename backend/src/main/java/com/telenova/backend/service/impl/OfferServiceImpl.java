@@ -15,7 +15,6 @@ import com.telenova.backend.service.OfferingService;
 import com.telenova.backend.web.dto.GroupedOfferings;
 import com.telenova.backend.web.dto.InternetOfferDto;
 import com.telenova.backend.web.dto.MobileOfferDto;
-import com.telenova.backend.web.dto.OfferDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -45,8 +44,7 @@ public class OfferServiceImpl implements OfferService {
             for (OfferEntity offerEntity : offerEntities) {
                 MobileOfferDto offerDto = new MobileOfferDto();
                 offerDto.setOffer(offerEntity);
-                List<OfferingEntity> offeringEntities = getOfferingsByOfferId(offerEntity.getId());
-                GroupedOfferings groupedOfferings = offeringService.getGroupedOfferings(offeringEntities);
+                GroupedOfferings groupedOfferings = getGroupedOfferingsByOfferId(offerEntity.getId());
                 offerDto.setMobileInternet(groupedOfferings.getMobileInternet().get(0));
                 offerDto.setMobileMinutesIn(groupedOfferings.getMobileMinutesIn().get(0));
                 offerDto.setMobileMinutesOut(groupedOfferings.getMobileMinutesOut().get(0));
@@ -82,8 +80,7 @@ public class OfferServiceImpl implements OfferService {
         SpecificationEntity specificationEntity = specificationEntityRepository.findById(MOBILE_SPECIFICATION_ID).get();
         List<OfferEntity> offerEntities = offerEntityRepository.findAllBySpecification(specificationEntity);
         for (OfferEntity offerEntity : offerEntities) {
-            List<OfferingEntity> offeringEntities = getOfferingsByOfferId(offerEntity.getId());
-            GroupedOfferings groupedOfferings = offeringService.getGroupedOfferings(offeringEntities);
+            GroupedOfferings groupedOfferings = getGroupedOfferingsByOfferId(offerEntity.getId());
 
             MobileOfferDto mobileOfferDto = new MobileOfferDto();
             mobileOfferDto.setOffer(offerEntity);
@@ -104,8 +101,7 @@ public class OfferServiceImpl implements OfferService {
         SpecificationEntity specificationEntity = specificationEntityRepository.findById(INTERNET_SPECIFICATION_ID).get();
         List<OfferEntity> offerEntities = offerEntityRepository.findAllBySpecification(specificationEntity);
         for (OfferEntity offerEntity : offerEntities) {
-            List<OfferingEntity> offeringEntities = getOfferingsByOfferId(offerEntity.getId());
-            GroupedOfferings groupedOfferings = offeringService.getGroupedOfferings(offeringEntities);
+            GroupedOfferings groupedOfferings = getGroupedOfferingsByOfferId(offerEntity.getId());
 
 
             InternetOfferDto internetOfferDto = new InternetOfferDto();
@@ -174,6 +170,26 @@ public class OfferServiceImpl implements OfferService {
         offerHasOfferingEntity.setOfferingId(internetOfferDto.getInternetSoft2().getId());
         offerHasOfferingEntityRepository.save(offerHasOfferingEntity);
         return true;
+    }
+
+    @Override
+    public MobileOfferDto getMobileOfferById(Integer id) {
+        OfferEntity offerEntity = offerEntityRepository.findById(id).get();
+        GroupedOfferings groupedOfferings = getGroupedOfferingsByOfferId(offerEntity.getId());
+
+        MobileOfferDto mobileOfferDto = new MobileOfferDto();
+        mobileOfferDto.setOffer(offerEntity);
+        mobileOfferDto.setMobileInternet(groupedOfferings.getMobileInternet().get(0));
+        mobileOfferDto.setMobileMinutesIn(groupedOfferings.getMobileMinutesIn().get(0));
+        mobileOfferDto.setMobileMinutesOut(groupedOfferings.getMobileMinutesOut().get(0));
+
+        return mobileOfferDto;
+    }
+
+    private GroupedOfferings getGroupedOfferingsByOfferId(Integer offerId) {
+        List<OfferingEntity> offeringEntities = getOfferingsByOfferId(offerId);
+
+        return offeringService.getGroupedOfferings(offeringEntities);
     }
 
     @Override

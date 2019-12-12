@@ -15,4 +15,5 @@ public interface OfferService {
     Boolean createMobileOffer(MobileOfferDto mobileOfferDto);
     Boolean createInternetOffer(InternetOfferDto internetOfferDto);
     List<OfferStatusEntity> getAllOfferStatuses();
+    MobileOfferDto getMobileOfferById(Integer id);
 }

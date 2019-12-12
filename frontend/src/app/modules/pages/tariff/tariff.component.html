@@ -3,13 +3,13 @@
 <div class="container-fluid tariff-back pt-5">
   <div class="col-6 mt-5 pt-4">
     <div class="row justify-content-center mb-1">
-      <h1 class="tariff-color text-white pb-2 pr-2 pl-2 pt-1">Имя тарифа</h1>
+      <h1 class="tariff-color text-white pb-2 pr-2 pl-2 pt-1">{{offer.offer.name}}</h1>
     </div>
     <div class="row justify-content-center">
-      <p>Идеально для вашего смартфона</p>
+      <p class="tariff-color text-white">{{offer.offer.description}}</p>
     </div>
     <div class="row justify-content-center">
-      <h4>9.90$/мес. абонентская плата</h4>
+      <h4 class="tariff-color text-white">{{offer.offer.price}} руб./мес. абонентская плата</h4>
     </div>
   </div>
 </div>
@@ -23,21 +23,30 @@
       <div class="col-lg-4">
         <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
           <img src="/assets/img/internet.svg" alt="Phone" class="icon-img">
-          <h3 class="color-main mt-2">5 ГБ</h3>
+          <br>
+          <h3 class="color-main mt-2 d-inline">{{offer.mobileInternet.value}}&nbsp;</h3>
+          <h3 class="color-main mt-2 d-inline"
+              *ngIf="offer.mobileInternet.valueMeasure.id != 4">{{offer.mobileInternet.valueMeasure.measurement}}</h3>
           <p class="lead mb-0">интернета</p>
         </div>
       </div>
       <div class="col-lg-4">
         <div class="mx-auto mb-5 mb-lg-0 mb-lg-3">
           <img src="/assets/img/phone.svg" alt="Internet" class="icon-img">
-          <h3 class="color-main mt-2">Безлимит</h3>
+          <br>
+          <h3 class="color-main mt-2">{{offer.mobileMinutesIn.value}}&nbsp;</h3>
+          <h3 class="color-main mt-2"
+              *ngIf="offer.mobileMinutesIn.valueMeasure.id != 4">{{offer.mobileMinutesIn.valueMeasure.measurement}}</h3>
           <p class="lead mb-0">внутри сети</p>
         </div>
       </div>
       <div class="col-lg-4">
         <div class="mx-auto mb-0 mb-lg-3">
           <img src="/assets/img/other-network.svg" alt="Support" class="icon-img">
-          <h3 class="color-main mt-2">60 мин.</h3>
+          <br>
+          <h3 class="color-main mt-2 d-inline">{{offer.mobileMinutesOut.value}}&nbsp;</h3>
+          <h3 class="color-main mt-2 d-inline"
+              *ngIf="offer.mobileMinutesOut.valueMeasure.id != 4">{{offer.mobileMinutesOut.valueMeasure.measurement}}</h3>
           <p class="lead mb-0">в другие сети</p>
         </div>
       </div>

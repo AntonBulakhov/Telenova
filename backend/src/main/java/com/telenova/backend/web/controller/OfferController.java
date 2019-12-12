@@ -7,6 +7,7 @@ import com.telenova.backend.web.dto.MobileOfferDto;
 import com.telenova.backend.web.dto.OfferDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,6 +49,11 @@ public class OfferController {
     @GetMapping("/statuses")
     public List<OfferStatusEntity> getAllStatuses() {
         return offerService.getAllOfferStatuses();
+    }
+
+    @GetMapping("/mobile/{id}")
+    public MobileOfferDto getMobileOfferById(@PathVariable Integer id) {
+        return offerService.getMobileOfferById(id);
     }
 
     @Autowired
