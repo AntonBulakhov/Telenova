@@ -13,6 +13,10 @@ export class OfferService {
   constructor(private http: HttpClient) {
   }
 
+  getMainMobileOffers(): Observable<OfferDTOModel[]> {
+    return this.http.get<OfferDTOModel[]>("/api/offer/mobile/main");
+  }
+
   getAllOfferStatuses(): Observable<OfferStatusModel[]> {
     return this.http.get<OfferStatusModel[]>("/api/offer/statuses");
   }

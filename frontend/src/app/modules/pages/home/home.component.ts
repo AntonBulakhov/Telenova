@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {OfferService} from "../../../services/offer.service";
+import {OfferDTOModel} from "../../../dto/offerdto.model";
 
 @Component({
   selector: 'app-home',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  public mobileOffers: OfferDTOModel[];
+
+  constructor(private offerService: OfferService) { }
 
   ngOnInit() {
+    this.offerService.getMainMobileOffers().subscribe(value => {
+      this.mobileOffers = value as OfferDTOModel[];
+    });
   }
 
 }

@@ -37,20 +37,29 @@ public class OfferServiceImpl implements OfferService {
     private OfferingService offeringService;
 
     @Override
-    public List<OfferDto> getMainMobileOffers() {
+    public List<MobileOfferDto> getMainMobileOffers() {
         Optional<SpecificationEntity> specification = specificationEntityRepository.findById(MOBILE_SPECIFICATION_ID);
-        List<OfferDto> offerDtos = new ArrayList<>();
+        List<MobileOfferDto> offerDtos = new ArrayList<>();
         if (specification.isPresent()) {
             List<OfferEntity> offerEntities = offerEntityRepository.findAllBySpecification(specification.get());
             for (OfferEntity offerEntity : offerEntities) {
-                OfferDto offerDto = new OfferDto();
+                MobileOfferDto offerDto = new MobileOfferDto();
                 offerDto.setOffer(offerEntity);
                 List<OfferingEntity> offeringEntities = getOfferingsByOfferId(offerEntity.getId());
-                offerDto.setOfferings(offeringEntities);
+                GroupedOfferings groupedOfferings = offeringService.getGroupedOfferings(offeringEntities);
+                offerDto.setMobileInternet(groupedOfferings.getMobileInternet().get(0));
+                offerDto.setMobileMinutesIn(groupedOfferings.getMobileMinutesIn().get(0));
+                offerDto.setMobileMinutesOut(groupedOfferings.getMobileMinutesOut().get(0));
+
                 offerDtos.add(offerDto);
             }
         }
-        return offerDtos;
+
+        if (offerDtos.size() <= 3) {
+            return offerDtos;
+        } else {
+            return offerDtos.subList(0, 3);
+        }
     }
 
     private List<OfferingEntity> getOfferingsByOfferId(Integer offerId) {

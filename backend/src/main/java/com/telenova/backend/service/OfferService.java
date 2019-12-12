@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import java.util.List;
 
 public interface OfferService {
-    List<OfferDto> getMainMobileOffers();
+    List<MobileOfferDto> getMainMobileOffers();
     List<MobileOfferDto> getAllMobileOffers();
     List<InternetOfferDto> getAllInternetOffers();
     Boolean createMobileOffer(MobileOfferDto mobileOfferDto);

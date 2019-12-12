@@ -21,7 +21,7 @@ public class OfferController {
     private OfferService offerService;
 
     @GetMapping("/mobile/main")
-    public List<OfferDto> getMainOffers() {
+    public List<MobileOfferDto> getMainOffers() {
         return offerService.getMainMobileOffers();
     }
 
