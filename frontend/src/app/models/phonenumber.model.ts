@@ -2,7 +2,7 @@ export class PhoneNumberModel {
   id: string;
   serviceId: string;
   userId: string;
-  honeNumber: string
+  honeNumber: string;
 
   static cloneBase(role: PhoneNumberModel): PhoneNumberModel {
     const cloneRoleModel: PhoneNumberModel = new PhoneNumberModel();

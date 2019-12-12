@@ -6,7 +6,7 @@ import {BalanceModel} from "./balance.model";
 export class ServiceModel {
   id: string;
   userId: string;
-  offer: OfferModel;
+  offerId: string;
   balance: BalanceModel;
   address: AddressModel;
   serviceStatus: ServiceStatusModel;
@@ -15,7 +15,7 @@ export class ServiceModel {
     const cloneModel: ServiceModel = new ServiceModel();
     cloneModel.id = model.id;
     cloneModel.userId = model.userId;
-    cloneModel.offer = model.offer;
+    cloneModel.offerId = model.offerId;
     cloneModel.balance = model.balance;
     cloneModel.address = model.address;
     cloneModel.serviceStatus = model.serviceStatus;

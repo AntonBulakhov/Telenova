@@ -14,19 +14,28 @@
     <tbody>
     <tr>
       <td>
-        <h5>Название тарифа</h5>
-        <p>краткое описание тарифа</p>
+        <h5>{{offer.offer.name}}</h5>
+        <p>{{offer.offer.description}}</p>
       </td>
       <td>
         <ul>
-          <li>Характеристика 1</li>
-          <li>Характеристика 2</li>
-          <li>Характеристика 3</li>
+          <li>
+            <p class="d-inline">{{offer.mobileInternet.value}}&nbsp;</p>
+            <p class="d-inline"   *ngIf="offer.mobileInternet.valueMeasure.id != 4">{{offer.mobileInternet.valueMeasure.measurement}}</p>
+          </li>
+          <li>
+            <p class="d-inline">{{offer.mobileMinutesIn.value}}&nbsp;</p>
+            <p class="d-inline"   *ngIf="offer.mobileMinutesIn.valueMeasure.id != 4">{{offer.mobileMinutesIn.valueMeasure.measurement}}</p>
+          </li>
+          <li>
+            <p class="d-inline">{{offer.mobileMinutesOut.value}}&nbsp;</p>
+            <p class="d-inline"   *ngIf="offer.mobileMinutesOut.valueMeasure.id != 4">{{offer.mobileMinutesOut.valueMeasure.measurement}}</p>
+          </li>
         </ul>
       </td>
-      <td>9р./мес.</td>
-      <td>5р.</td>
-      <td>+375 11 111-11-11</td>
+      <td>{{offer.offer.price}} руб./мес.</td>
+      <td>{{connectPrice}} р.</td>
+      <td>{{phoneNumber.honeNumber}}</td>
     </tr>
     </tbody>
   </table>
@@ -35,7 +44,7 @@
 <div class="container-fluid d-flex justify-content-end">
   <div class="form-group">
     <label for="sum" class="mb-0">Итого:</label>
-    <h2 id="sum">5р.</h2>
+    <h2 id="sum">{{connectPrice}} р.</h2>
   </div>
 </div>
 
@@ -95,7 +104,7 @@
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-main">Оплатить</button>
+        <button type="button" class="btn btn-main" data-dismiss="modal" (click)="onPaidMobileTariff()">Оплатить</button>
       </div>
 
     </div>

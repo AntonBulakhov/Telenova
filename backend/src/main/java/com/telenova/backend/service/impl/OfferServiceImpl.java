@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import static com.telenova.backend.constants.OfferStatusConstants.BLOCKED_OFFER_STATUS_ID;
 import static com.telenova.backend.constants.SpecificationConstants.INTERNET_SPECIFICATION_ID;
 import static com.telenova.backend.constants.SpecificationConstants.MOBILE_SPECIFICATION_ID;
 
@@ -49,6 +50,7 @@ public class OfferServiceImpl implements OfferService {
                 offerDto.setMobileMinutesIn(groupedOfferings.getMobileMinutesIn().get(0));
                 offerDto.setMobileMinutesOut(groupedOfferings.getMobileMinutesOut().get(0));
 
+                if(offerEntity.getOfferStatus().getId() != BLOCKED_OFFER_STATUS_ID)
                 offerDtos.add(offerDto);
             }
         }

@@ -1,6 +1,8 @@
 package com.telenova.backend.database.entity;
 
 import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.io.Serializable;
 
@@ -10,6 +12,7 @@ public class ServiceEntityPK implements Serializable {
     private int offerId;
 
     @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     public int getId() {
         return id;

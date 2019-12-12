@@ -3,6 +3,8 @@ package com.telenova.backend.database.entity;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,6 +23,7 @@ public class UserEntity {
     private UserStatusEntity userStatus;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
     public int getId() {
         return id;

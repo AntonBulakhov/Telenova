@@ -8,6 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {StorageService} from "./services/storage/storage.service";
 import {OfferingService} from "./services/offering.service";
 import {SpecificationService} from "./services/specification.service";
+import {PhoneNumberService} from "./services/phonenumber.service";
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {SpecificationService} from "./services/specification.service";
   providers: [
     StorageService,
     OfferingService,
-    SpecificationService
+    SpecificationService,
+    PhoneNumberService,
   ],
   bootstrap: [AppComponent]
 })

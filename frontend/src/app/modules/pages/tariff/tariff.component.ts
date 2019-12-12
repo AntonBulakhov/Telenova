@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {StorageService} from "../../../services/storage/storage.service";
-import {Router} from "@angular/router";
 import {OfferService} from "../../../services/offer.service";
 import {OfferDTOModel} from "../../../dto/offerdto.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-tariff',
@@ -14,7 +14,8 @@ export class TariffComponent implements OnInit {
   public offer: OfferDTOModel;
 
   constructor(private storageService: StorageService,
-              private offerService: OfferService) { }
+              private offerService: OfferService,
+              private router: Router) { }
 
   ngOnInit() {
     let id: string = this.storageService.getOfferId();
@@ -24,6 +25,7 @@ export class TariffComponent implements OnInit {
   }
 
   onConnectClicked() {
-
+    this.storageService.saveOfferId(this.offer.offer.id);
+    this.router.navigate(['/mobile/submit']);
   }
 }
