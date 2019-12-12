@@ -4,6 +4,7 @@ import {Observable} from "rxjs";
 import {OfferDTOModel} from "../dto/offerdto.model";
 import {OfferStatusModel} from "../models/offerstatus.model";
 import {InternetOfferDtoModel} from "../dto/iOfferdto.model";
+import {OfferModel} from "../models/offer.model";
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,9 @@ export class OfferService {
 
   getMobileOfferById(id: string): Observable<OfferDTOModel> {
     return this.http.get<OfferDTOModel>("/api/offer/mobile/" + id);
+  }
+
+  setOfferStatus(offer: OfferModel): Observable<any> {
+    return this.http.post<any>("/api/offer/status", offer);
   }
 }

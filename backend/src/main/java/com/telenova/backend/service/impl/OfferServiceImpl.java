@@ -193,6 +193,15 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
+    public void setOfferStatus(OfferEntity offerStatus) {
+        OfferEntity offerEntity = offerEntityRepository.findById(offerStatus.getId()).get();
+
+        offerEntity.setOfferStatus(offerStatus.getOfferStatus());
+
+        offerEntityRepository.save(offerEntity);
+    }
+
+    @Override
     public List<OfferStatusEntity> getAllOfferStatuses() {
         return (List<OfferStatusEntity>) offerStatusEntityRepository.findAll();
     }

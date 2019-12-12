@@ -1,5 +1,6 @@
 package com.telenova.backend.web.controller;
 
+import com.telenova.backend.database.entity.OfferEntity;
 import com.telenova.backend.database.entity.OfferStatusEntity;
 import com.telenova.backend.service.OfferService;
 import com.telenova.backend.web.dto.InternetOfferDto;
@@ -49,6 +50,11 @@ public class OfferController {
     @GetMapping("/statuses")
     public List<OfferStatusEntity> getAllStatuses() {
         return offerService.getAllOfferStatuses();
+    }
+
+    @PostMapping("/status")
+    public void setOfferStatus(@RequestBody OfferEntity offerStatus) {
+        offerService.setOfferStatus(offerStatus);
     }
 
     @GetMapping("/mobile/{id}")

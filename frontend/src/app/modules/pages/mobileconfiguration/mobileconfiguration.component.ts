@@ -7,6 +7,7 @@ import {OfferDTOModel} from "../../../dto/offerdto.model";
 import {OfferService} from "../../../services/offer.service";
 import {OfferingModel} from "../../../models/offering.model";
 import {OfferStatusModel} from "../../../models/offerstatus.model";
+import {OfferModel} from "../../../models/offer.model";
 
 @Component({
   selector: 'app-mobileconfiguration',
@@ -51,11 +52,20 @@ export class MobileconfigurationComponent implements OnInit {
     })
   }
 
-  public getSpecification(id: string): SpecificationModel {
+  getSpecification(id: string): SpecificationModel {
     return this.specifications.find(obj => obj.id == id);
   }
 
-  public getOfferStatus(id: string): OfferStatusModel {
+  getOfferStatus(id: string): OfferStatusModel {
     return this.offerStatuses.find(obj => obj.id == id);
+  }
+
+  setOfferStatus(offerId: string, statusId: string): void {
+    let offerS: OfferModel = new OfferModel();
+    offerS.id = offerId;
+    offerS.offerStatus = this.getOfferStatus(statusId);
+    this.offerService.setOfferStatus(offerS).subscribe(value => {
+      this.ngOnInit();
+    });
   }
 }
