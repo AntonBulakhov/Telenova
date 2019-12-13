@@ -162,7 +162,7 @@ public class ServServiceImpl implements ServService {
             phoneNumberEntityRepository.deleteById(phoneNumberEntity.getId());
         }
         Integer balanceId = serviceEntity.getBalance().getId();
-        serviceEntityRepository.deleteById(id);
+        serviceEntityRepository.deleteByIdIs(id);
         balanceEntityRepository.deleteById(balanceId);
     }
 

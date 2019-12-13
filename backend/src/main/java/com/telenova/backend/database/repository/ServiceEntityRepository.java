@@ -4,6 +4,7 @@ import com.telenova.backend.database.entity.ServiceEntity;
 import com.telenova.backend.database.entity.ServiceStatusEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -12,4 +13,7 @@ public interface ServiceEntityRepository extends CrudRepository<ServiceEntity, I
     List<ServiceEntity> findAllByUserId(Integer id);
     List<ServiceEntity> findAllByOfferIdInAndServiceStatus(List<Integer> offerIds, ServiceStatusEntity status);
     ServiceEntity findByIdIs(Integer id);
+
+    @Transactional
+    void deleteByIdIs(Integer id);
 }

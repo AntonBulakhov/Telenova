@@ -52,7 +52,7 @@
         <p *ngSwitchCase="3">Оплачена</p>
       </td>
       <td>
-        <button class="btn btn-main"
+        <button class="btn btn-main" (click)="setServiceToPay(service.service.id)"
                 *ngIf="service.service.serviceStatus.id == '2'" data-toggle="modal" data-target="#modalPayment">Оплатить</button>
         <button class="btn btn-main" *ngIf="service.service.serviceStatus.id == '1'"
                 (click)="setStatus(service.service.id, '2')">Подтвердить</button>
@@ -76,7 +76,6 @@
       </div>
 
       <div class="modal-body">
-
         <div class="form-group">
           <label>Полное имя (на карте)</label>
           <input type="text" name="username" placeholder="Ivan Ivanov" class="form-control" required>
@@ -107,10 +106,15 @@
             </div>
           </div>
         </div>
+
+        <div class="row">
+          <h3>Сумма: 25 р.</h3>
+        </div>
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-main">Оплатить</button>
+        <button type="button" class="btn btn-main" *ngFor="let service of serviceToPay"
+                (click)="setStatus(service, '3')">Оплатить</button>
       </div>
 
     </div>

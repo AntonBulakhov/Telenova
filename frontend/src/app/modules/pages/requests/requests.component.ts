@@ -15,11 +15,13 @@ export class RequestsComponent implements OnInit {
 
   private statuses: ServiceStatusModel[];
 
+  private serviceToPay: string;
+
   constructor(private servService: ServService) {
   }
 
   ngOnInit() {
-    this.servService.getInternetServicesByStatus('1').subscribe(value => {
+    this.servService.getInternetServicesByStatus('2').subscribe(value => {
       this.services = value as InternetServiceOfferModel[];
     });
     this.servService.getAllServiceStatuses().subscribe(value => {
@@ -40,6 +42,10 @@ export class RequestsComponent implements OnInit {
     this.servService.deleteInternetService(serviceId).subscribe(value => {
       this.ngOnInit();
     });
+  }
+
+  setServiceToPay(serviceId: string): void {
+    this.serviceToPay = serviceId;
   }
 
   public getStatus(id: string): ServiceStatusModel {
