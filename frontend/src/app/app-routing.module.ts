@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./modules/pages/home/home.component";
 import {ProfileComponent} from "./modules/pages/profile/profile.component";
 import {RegistrationComponent} from "./modules/pages/registration/registration.component";
@@ -14,7 +14,6 @@ import {MobileconfigurationComponent} from "./modules/pages/mobileconfiguration/
 import {InternetconfigurationComponent} from "./modules/pages/internetconfiguration/internetconfiguration.component";
 import {OfferingsconfigurationComponent} from "./modules/pages/offeringsconfiguration/offeringsconfiguration.component";
 import {UsersComponent} from "./modules/pages/users/users.component";
-import {BalanceModel} from "./models/balance.model";
 
 
 const routes: Routes = [
