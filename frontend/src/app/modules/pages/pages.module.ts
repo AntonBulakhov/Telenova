@@ -36,7 +36,8 @@ import {FormsModule} from "@angular/forms";
     MobileconfigurationComponent,
     InternetconfigurationComponent,
     OfferingsconfigurationComponent,
-    UsersComponent],
+    UsersComponent,
+    ],
     imports: [
         CommonModule,
         SharedModule,

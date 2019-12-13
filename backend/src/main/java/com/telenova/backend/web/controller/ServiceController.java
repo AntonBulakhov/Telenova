@@ -1,5 +1,6 @@
 package com.telenova.backend.web.controller;
 
+import com.telenova.backend.database.entity.BalanceEntity;
 import com.telenova.backend.database.entity.ServiceStatusEntity;
 import com.telenova.backend.service.ServService;
 import com.telenova.backend.web.dto.NewMobileService;
@@ -33,6 +34,11 @@ public class ServiceController {
     @GetMapping("/mobile/user/{id}")
     public List<ProfileMobileOffer> getMobileServicesByUserId(@PathVariable Integer id) {
         return servService.getMobileServicesByUserId(id);
+    }
+
+    @PostMapping("/balance")
+    public Boolean fillBalance(@RequestBody BalanceEntity balanceEntity) {
+        return servService.fillBalance(balanceEntity);
     }
 
     @Autowired

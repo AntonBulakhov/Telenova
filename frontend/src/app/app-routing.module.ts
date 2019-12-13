@@ -14,6 +14,7 @@ import {MobileconfigurationComponent} from "./modules/pages/mobileconfiguration/
 import {InternetconfigurationComponent} from "./modules/pages/internetconfiguration/internetconfiguration.component";
 import {OfferingsconfigurationComponent} from "./modules/pages/offeringsconfiguration/offeringsconfiguration.component";
 import {UsersComponent} from "./modules/pages/users/users.component";
+import {BalanceModel} from "./models/balance.model";
 
 
 const routes: Routes = [

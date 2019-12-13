@@ -8,8 +8,14 @@
         <b>{{mobileTariff.mobileInternet.valueMeasure.measurement}}</b>
         интернета
       </li>
-      <li class="mt-4"><b>Безлимит</b> внутри сети</li>
-      <li class="mt-4"><b>120 минут</b> в другие сети</li>
+      <li class="mt-4">
+        <b>{{mobileTariff.mobileMinutesIn.value}}&nbsp;</b>
+        <b *ngIf="mobileTariff.mobileMinutesIn.valueMeasure.id != 4">{{mobileTariff.mobileMinutesIn.valueMeasure.measurement}}</b>
+        внутри сети</li>
+      <li class="mt-4">
+        <b>{{mobileTariff.mobileMinutesOut.value}}&nbsp;</b>
+        <b *ngIf="mobileTariff.mobileMinutesOut.valueMeasure.id != 4">{{mobileTariff.mobileMinutesOut.valueMeasure.measurement}}</b>
+        в другие сети</li>
     </ul>
   </div>
   <div class="card-footer bg-main text-white">{{mobileTariff.offer.description}}</div>

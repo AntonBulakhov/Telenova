@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ProfileService} from "../../../services/profile.service";
 import {ServService} from "../../../services/serv.service";
 import {ProfileMobileOfferModel} from "../../../dto/profilemobileoffer.model";
+import {BalanceModel} from "../../../models/balance.model";
 
 @Component({
   selector: 'app-profile',
@@ -12,8 +13,13 @@ export class ProfileComponent implements OnInit {
 
   public mobileServices: ProfileMobileOfferModel[];
 
+  public balanceToFill: BalanceModel;
+
+  public sum: string;
+
   constructor(private profileService: ProfileService,
-              private servService: ServService) { }
+              private servService: ServService) {
+  }
 
   ngOnInit() {
     this.servService.getMobileServiceByUserId('1').subscribe(value => {
@@ -21,4 +27,14 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  onBalanceClick(balanceModel: BalanceModel): void {
+    this.balanceToFill = balanceModel;
+  }
+
+  onPaid(): void {
+    this.balanceToFill.value = this.sum;
+    this.servService.fillBalance(this.balanceToFill).subscribe(value => {
+      this.ngOnInit();
+    })
+  }
 }

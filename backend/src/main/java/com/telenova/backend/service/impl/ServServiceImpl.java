@@ -70,6 +70,13 @@ public class ServServiceImpl implements ServService {
         return profileMobileOffers;
     }
 
+    @Override
+    public Boolean fillBalance(BalanceEntity balanceEntity) {
+        BalanceEntity balance = balanceEntityRepository.findById(balanceEntity.getId()).get();
+        balance.setValue(balance.getValue() + balanceEntity.getValue());
+        return balanceEntityRepository.save(balance) != null;
+    }
+
     @Autowired
     public void setServiceEntityRepository(ServiceEntityRepository serviceEntityRepository) {
         this.serviceEntityRepository = serviceEntityRepository;
