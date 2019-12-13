@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {OfferDTOModel} from "../../../dto/offerdto.model";
+import {Component, OnInit} from '@angular/core';
 import {InternetOfferDtoModel} from "../../../dto/iOfferdto.model";
 import {OfferStatusModel} from "../../../models/offerstatus.model";
 import {SpecificationModel} from "../../../models/specification.model";
@@ -7,6 +6,7 @@ import {GroupedOfferingsModel} from "../../../dto/groupedofferings.model";
 import {OfferingService} from "../../../services/offering.service";
 import {SpecificationService} from "../../../services/specification.service";
 import {OfferService} from "../../../services/offer.service";
+import {OfferModel} from "../../../models/offer.model";
 
 @Component({
   selector: 'app-internetconfiguration',
@@ -56,5 +56,14 @@ export class InternetconfigurationComponent implements OnInit {
 
   public getOfferStatus(id: string): OfferStatusModel {
     return this.offerStatuses.find(obj => obj.id == id);
+  }
+
+  setOfferStatus(offerId: string, statusId: string): void {
+    let offerS: OfferModel = new OfferModel();
+    offerS.id = offerId;
+    offerS.offerStatus = this.getOfferStatus(statusId);
+    this.offerService.setOfferStatus(offerS).subscribe(value => {
+      this.ngOnInit();
+    });
   }
 }
