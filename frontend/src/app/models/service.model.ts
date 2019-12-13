@@ -1,4 +1,3 @@
-import {OfferModel} from "./offer.model";
 import {AddressModel} from "./address.model";
 import {ServiceStatusModel} from "./servicestatus.model";
 import {BalanceModel} from "./balance.model";

@@ -4,46 +4,39 @@
   <h4>Интернет тарифы</h4>
 </div>
 <div class="container-fluid row mt-3 justify-content-center">
-  <div class="col-12">
-    <table class="table table-bordered">
-
+  <div class="col-12 row">
+    <table class="table table-bordered col" *ngFor="let offer of offers">
       <thead class="thead-dark">
       <tr>
-        <th scope="col">Тариф 100</th>
-        <th scope="col">Тариф 75</th>
-        <th scope="col">Тариф 50</th>
+        <th scope="col">{{offer.offer.name}}</th>
       </tr>
       </thead>
       <tbody>
       <tr>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <td>Dr.Web</td>
-        <td>Dr.Web</td>
-        <td>Dr.Web</td>
-      </tr>
-      <tr>
-        <td>Radio</td>
-        <td>Radio</td>
-        <td>Radio</td>
-      </tr>
-      <tr>
-        <td>100$</td>
-        <td>75$</td>
-        <td>50$</td>
+        <td>до {{offer.internetSpeed.value}} {{offer.internetSpeed.valueMeasure.measurement}}</td>
       </tr>
       <tr>
         <td>
-          <button class="btn-main btn col-6" routerLink="/internet/submit">Купить</button>
+          <ul>
+            <li>{{offer.internetEquipment1.value}}</li>
+            <li>{{offer.internetEquipment2.value}}</li>
+          </ul>
         </td>
+      </tr>
+      <tr>
         <td>
-          <button class="btn-main btn col-6">Купить</button>
+          <ul>
+            <li>{{offer.internetSoft1.value}}</li>
+            <li>{{offer.internetSoft2.value}}</li>
+          </ul>
         </td>
+      </tr>
+      <tr>
+        <td>{{offer.offer.price}} руб./мес.</td>
+      </tr>
+      <tr>
         <td>
-          <button class="btn-main btn col-6">Купить</button>
+          <button class="btn-main btn col-6" (click)="onBuy(offer.offer.id)">Купить</button>
         </td>
       </tr>
       </tbody>

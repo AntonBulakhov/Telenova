@@ -1,6 +1,7 @@
 package com.telenova.backend.web.controller;
 
 import com.telenova.backend.database.entity.BalanceEntity;
+import com.telenova.backend.database.entity.ServiceEntity;
 import com.telenova.backend.database.entity.ServiceStatusEntity;
 import com.telenova.backend.service.ServService;
 import com.telenova.backend.web.dto.NewMobileService;
@@ -39,6 +40,11 @@ public class ServiceController {
     @PostMapping("/balance")
     public Boolean fillBalance(@RequestBody BalanceEntity balanceEntity) {
         return servService.fillBalance(balanceEntity);
+    }
+
+    @PostMapping("/internet")
+    public Boolean createInternetService(@RequestBody ServiceEntity serviceEntity) {
+        return servService.createInternetService(serviceEntity);
     }
 
     @Autowired

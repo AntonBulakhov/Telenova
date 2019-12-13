@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {StorageService} from "../../../services/storage/storage.service";
+import {ServService} from "../../../services/serv.service";
+import {ServiceModel} from "../../../models/service.model";
+import {AddressModel} from "../../../models/address.model";
+import {ServiceStatusModel} from "../../../models/servicestatus.model";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-internetsubmit',
@@ -7,9 +13,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InternetsubmitComponent implements OnInit {
 
-  constructor() { }
+  public address: AddressModel = new AddressModel();
+  private serv: ServiceModel = new ServiceModel();
 
-  ngOnInit() {
+  private serviceStatuses: ServiceStatusModel[];
+
+  constructor(private storageService: StorageService,
+              private servService: ServService,
+              private router: Router) {
   }
 
+  ngOnInit() {
+    this.serv.offerId = this.storageService.getOfferId();
+    this.servService.getAllServiceStatuses().subscribe(value => {
+      this.serviceStatuses = value as ServiceStatusModel[];
+    });
+  }
+
+  onSubmit(): void {
+    this.serv.address = this.address;
+    this.serv.serviceStatus = this.getNewStatus('1');
+    this.servService.createInternetService(this.serv).subscribe(value => {
+      this.router.navigate(['/']);
+    });
+  }
+
+  public getNewStatus(id: string): ServiceStatusModel {
+    return this.serviceStatuses.find(obj => obj.id == id);
+  }
 }

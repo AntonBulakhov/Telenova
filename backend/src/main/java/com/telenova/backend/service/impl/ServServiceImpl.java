@@ -1,10 +1,12 @@
 package com.telenova.backend.service.impl;
 
+import com.telenova.backend.database.entity.AddressEntity;
 import com.telenova.backend.database.entity.BalanceEntity;
 import com.telenova.backend.database.entity.OfferEntity;
 import com.telenova.backend.database.entity.PhoneNumberEntity;
 import com.telenova.backend.database.entity.ServiceEntity;
 import com.telenova.backend.database.entity.ServiceStatusEntity;
+import com.telenova.backend.database.repository.AddressEntityRepository;
 import com.telenova.backend.database.repository.BalanceEntityRepository;
 import com.telenova.backend.database.repository.OfferEntityRepository;
 import com.telenova.backend.database.repository.PhoneNumberEntityRepository;
@@ -27,6 +29,7 @@ public class ServServiceImpl implements ServService {
     private BalanceEntityRepository balanceEntityRepository;
     private PhoneNumberEntityRepository phoneNumberEntityRepository;
     private OfferEntityRepository offerEntityRepository;
+    private AddressEntityRepository addressEntityRepository;
 
     @Override
     public List<ServiceStatusEntity> getAllStatuses() {
@@ -77,6 +80,31 @@ public class ServServiceImpl implements ServService {
         return balanceEntityRepository.save(balance) != null;
     }
 
+    @Override
+    public Boolean createInternetService(ServiceEntity serviceEntity) {
+        BalanceEntity balanceEntity = new BalanceEntity();
+        balanceEntity.setValue(0);
+        balanceEntity = balanceEntityRepository.save(balanceEntity);
+
+        serviceEntity.setBalance(balanceEntity);
+        serviceEntity.setUserId(1); //stab
+
+        AddressEntity addressEntity = addressEntityRepository.findByCityAndStreetAndHouseAndFlat(
+                serviceEntity.getAddress().getCity(),
+                serviceEntity.getAddress().getStreet(),
+                serviceEntity.getAddress().getHouse(),
+                serviceEntity.getAddress().getFlat()
+        );
+        if(addressEntity == null) {
+            addressEntity = addressEntityRepository.save(serviceEntity.getAddress());
+        }
+        serviceEntity.setAddress(addressEntity);
+
+        serviceEntity = serviceEntityRepository.save(serviceEntity);
+
+        return serviceEntity.getId() != 0;
+    }
+
     @Autowired
     public void setServiceEntityRepository(ServiceEntityRepository serviceEntityRepository) {
         this.serviceEntityRepository = serviceEntityRepository;
@@ -100,5 +128,10 @@ public class ServServiceImpl implements ServService {
     @Autowired
     public void setOfferEntityRepository(OfferEntityRepository offerEntityRepository) {
         this.offerEntityRepository = offerEntityRepository;
+    }
+
+    @Autowired
+    public void setAddressEntityRepository(AddressEntityRepository addressEntityRepository) {
+        this.addressEntityRepository = addressEntityRepository;
     }
 }
