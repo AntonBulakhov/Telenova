@@ -19,18 +19,35 @@
     </tr>
     </thead>
     <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Название тарифа</td>
+    <tr *ngFor="let service of services, let i = index">
+      <th scope="row">{{i + 1}}</th>
+      <td>{{service.offer.offer.name}}</td>
       <td>
         <ul>
-          <li>Характеристика 1</li>
-          <li>Характеристика 2</li>
-          <li>Характеристика 3</li>
+          <li>
+            <p class="d-inline">{{service.offer.internetSpeed.value}}&nbsp;</p>
+            <p class="d-inline">{{service.offer.internetSpeed.valueMeasure.measurement}}</p>
+          </li>
+          <li>
+            <p>{{service.offer.internetEquipment1.value}}</p>
+          </li>
+          <li>
+            <p>{{service.offer.internetEquipment2.value}}</p>
+          </li>
+          <li>
+            <p>{{service.offer.internetSoft1.value}}</p>
+          </li>
+          <li>
+            <p>{{service.offer.internetSoft2.value}}</p>
+          </li>
         </ul>
       </td>
-      <td>23р./мес.</td>
-      <td>Новая</td>
+      <td>{{service.offer.offer.price}} руб./мес.</td>
+      <td [ngSwitch]="service.service.serviceStatus.id">
+        <p *ngSwitchCase="1">Новая</p>
+        <p *ngSwitchCase="2">Подтверждена</p>
+        <p *ngSwitchCase="3">Оплачена</p>
+      </td>
       <td>
         <button class="btn btn-main" data-toggle="modal" data-target="#modalPayment">Оплатить</button>
         <button class="btn btn-main">Подтвердить</button>

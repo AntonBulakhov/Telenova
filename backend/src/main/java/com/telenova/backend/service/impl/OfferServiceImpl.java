@@ -103,25 +103,31 @@ public class OfferServiceImpl implements OfferService {
         SpecificationEntity specificationEntity = specificationEntityRepository.findById(INTERNET_SPECIFICATION_ID).get();
         List<OfferEntity> offerEntities = offerEntityRepository.findAllBySpecification(specificationEntity);
         for (OfferEntity offerEntity : offerEntities) {
-            GroupedOfferings groupedOfferings = getGroupedOfferingsByOfferId(offerEntity.getId());
-
-
-            InternetOfferDto internetOfferDto = new InternetOfferDto();
-            internetOfferDto.setOffer(offerEntity);
-            internetOfferDto.setInternetSpeed(groupedOfferings.getInternetSpeed().get(0));
-
-            List<OfferingEntity> internetEquipment = groupedOfferings.getInternetEquipment();
-            internetOfferDto.setInternetEquipment1(internetEquipment.get(0));
-            internetOfferDto.setInternetEquipment2(internetEquipment.get(1));
-
-            List<OfferingEntity> internetSoft = groupedOfferings.getInternetSoft();
-            internetOfferDto.setInternetSoft1(internetSoft.get(0));
-            internetOfferDto.setInternetSoft2(internetSoft.get(1));
+            InternetOfferDto internetOfferDto = getInternetOfferDto(offerEntity);
 
             internetOfferDtos.add(internetOfferDto);
         }
 
         return internetOfferDtos;
+    }
+
+    @Override
+    public InternetOfferDto getInternetOfferDto(OfferEntity offerEntity) {
+        GroupedOfferings groupedOfferings = getGroupedOfferingsByOfferId(offerEntity.getId());
+
+
+        InternetOfferDto internetOfferDto = new InternetOfferDto();
+        internetOfferDto.setOffer(offerEntity);
+        internetOfferDto.setInternetSpeed(groupedOfferings.getInternetSpeed().get(0));
+
+        List<OfferingEntity> internetEquipment = groupedOfferings.getInternetEquipment();
+        internetOfferDto.setInternetEquipment1(internetEquipment.get(0));
+        internetOfferDto.setInternetEquipment2(internetEquipment.get(1));
+
+        List<OfferingEntity> internetSoft = groupedOfferings.getInternetSoft();
+        internetOfferDto.setInternetSoft1(internetSoft.get(0));
+        internetOfferDto.setInternetSoft2(internetSoft.get(1));
+        return internetOfferDto;
     }
 
     @Override

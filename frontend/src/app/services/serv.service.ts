@@ -6,6 +6,7 @@ import {NewServiceModel} from "../dto/newservice.model";
 import {ProfileMobileOfferModel} from "../dto/profilemobileoffer.model";
 import {BalanceModel} from "../models/balance.model";
 import {ServiceModel} from "../models/service.model";
+import {InternetServiceOfferModel} from "../dto/iserviceoffer.model";
 
 @Injectable({
   providedIn: 'root'
@@ -33,5 +34,9 @@ export class ServService {
 
   createInternetService(servService: ServiceModel): Observable<boolean> {
     return this.http.post<boolean>("/api/service/internet", servService);
+  }
+
+  getInternetServicesByStatus(id: string): Observable<InternetServiceOfferModel[]> {
+    return this.http.get<InternetServiceOfferModel[]>("/api/service/internet/all/status/" + id);
   }
 }

@@ -23,4 +23,6 @@ public interface OfferService {
     MobileOfferDto getMobileOfferById(Integer id);
 
     void setOfferStatus(OfferEntity offerStatus);
+
+    InternetOfferDto getInternetOfferDto(OfferEntity offerEntity);
 }

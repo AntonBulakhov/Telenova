@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ServService} from "../../../services/serv.service";
+import {InternetServiceOfferModel} from "../../../dto/iserviceoffer.model";
 
 @Component({
   selector: 'app-requests',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RequestsComponent implements OnInit {
 
-  constructor() { }
+  private services: InternetServiceOfferModel[];
+
+  constructor(private servService: ServService) {
+  }
 
   ngOnInit() {
+    this.servService.getInternetServicesByStatus('1').subscribe(value => {
+      this.services = value as InternetServiceOfferModel[];
+    });
   }
 
 }

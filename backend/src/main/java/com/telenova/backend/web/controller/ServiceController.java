@@ -4,6 +4,7 @@ import com.telenova.backend.database.entity.BalanceEntity;
 import com.telenova.backend.database.entity.ServiceEntity;
 import com.telenova.backend.database.entity.ServiceStatusEntity;
 import com.telenova.backend.service.ServService;
+import com.telenova.backend.web.dto.InternetServiceOfferModel;
 import com.telenova.backend.web.dto.NewMobileService;
 import com.telenova.backend.web.dto.ProfileMobileOffer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,11 @@ public class ServiceController {
     @PostMapping("/internet")
     public Boolean createInternetService(@RequestBody ServiceEntity serviceEntity) {
         return servService.createInternetService(serviceEntity);
+    }
+
+    @GetMapping("/internet/all/status/{id}")
+    public List<InternetServiceOfferModel> getInternetServicesByStatus(@PathVariable Integer id) {
+        return servService.getInternetServicesByStatus(id);
     }
 
     @Autowired

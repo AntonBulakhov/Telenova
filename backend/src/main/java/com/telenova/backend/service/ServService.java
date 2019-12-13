@@ -3,6 +3,7 @@ package com.telenova.backend.service;
 import com.telenova.backend.database.entity.BalanceEntity;
 import com.telenova.backend.database.entity.ServiceEntity;
 import com.telenova.backend.database.entity.ServiceStatusEntity;
+import com.telenova.backend.web.dto.InternetServiceOfferModel;
 import com.telenova.backend.web.dto.NewMobileService;
 import com.telenova.backend.web.dto.ProfileMobileOffer;
 
@@ -18,4 +19,6 @@ public interface ServService {
     Boolean fillBalance(BalanceEntity balanceEntity);
 
     Boolean createInternetService(ServiceEntity serviceEntity);
+
+    List<InternetServiceOfferModel> getInternetServicesByStatus(Integer id);
 }

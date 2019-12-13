@@ -6,13 +6,17 @@ import com.telenova.backend.database.entity.OfferEntity;
 import com.telenova.backend.database.entity.PhoneNumberEntity;
 import com.telenova.backend.database.entity.ServiceEntity;
 import com.telenova.backend.database.entity.ServiceStatusEntity;
+import com.telenova.backend.database.entity.SpecificationEntity;
 import com.telenova.backend.database.repository.AddressEntityRepository;
 import com.telenova.backend.database.repository.BalanceEntityRepository;
 import com.telenova.backend.database.repository.OfferEntityRepository;
 import com.telenova.backend.database.repository.PhoneNumberEntityRepository;
 import com.telenova.backend.database.repository.ServiceEntityRepository;
 import com.telenova.backend.database.repository.ServiceStatusEntityRepository;
+import com.telenova.backend.database.repository.SpecificationEntityRepository;
+import com.telenova.backend.service.OfferService;
 import com.telenova.backend.service.ServService;
+import com.telenova.backend.web.dto.InternetServiceOfferModel;
 import com.telenova.backend.web.dto.NewMobileService;
 import com.telenova.backend.web.dto.ProfileMobileOffer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +24,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.telenova.backend.constants.SpecificationConstants.INTERNET_SPECIFICATION_ID;
 
 @Service
 public class ServServiceImpl implements ServService {
@@ -30,6 +36,9 @@ public class ServServiceImpl implements ServService {
     private PhoneNumberEntityRepository phoneNumberEntityRepository;
     private OfferEntityRepository offerEntityRepository;
     private AddressEntityRepository addressEntityRepository;
+    private SpecificationEntityRepository specificationEntityRepository;
+
+    private OfferService offerService;
 
     @Override
     public List<ServiceStatusEntity> getAllStatuses() {
@@ -95,7 +104,7 @@ public class ServServiceImpl implements ServService {
                 serviceEntity.getAddress().getHouse(),
                 serviceEntity.getAddress().getFlat()
         );
-        if(addressEntity == null) {
+        if (addressEntity == null) {
             addressEntity = addressEntityRepository.save(serviceEntity.getAddress());
         }
         serviceEntity.setAddress(addressEntity);
@@ -108,6 +117,38 @@ public class ServServiceImpl implements ServService {
     @Autowired
     public void setServiceEntityRepository(ServiceEntityRepository serviceEntityRepository) {
         this.serviceEntityRepository = serviceEntityRepository;
+    }
+
+    @Override
+    public List<InternetServiceOfferModel> getInternetServicesByStatus(Integer statusId) {
+        SpecificationEntity internetSpecification = specificationEntityRepository.findById(INTERNET_SPECIFICATION_ID).get();
+        return getServiceEntities(internetSpecification, statusId);
+    }
+
+    private List<InternetServiceOfferModel> getServiceEntities(SpecificationEntity internetSpecification, Integer statusId) {
+        List<OfferEntity> offerEntities = offerEntityRepository.findAllBySpecification(internetSpecification);
+        ServiceStatusEntity serviceStatusEntity = serviceStatusEntityRepository.findById(statusId).get();
+
+        List<Integer> offerIds = new ArrayList<>();
+        for (OfferEntity offer : offerEntities) {
+            offerIds.add(offer.getId());
+        }
+
+        List<ServiceEntity> serviceEntities = serviceEntityRepository.
+                findAllByOfferIdInAndServiceStatus(offerIds, serviceStatusEntity);
+
+        List<InternetServiceOfferModel> modelList = new ArrayList<>();
+        for (ServiceEntity serviceEntity : serviceEntities) {
+            OfferEntity offerEntity = offerEntityRepository.findById(serviceEntity.getOfferId()).get();
+
+            InternetServiceOfferModel model = new InternetServiceOfferModel();
+            model.setService(serviceEntity);
+            model.setOffer(offerService.getInternetOfferDto(offerEntity));
+
+            modelList.add(model);
+        }
+
+        return modelList;
     }
 
     @Autowired
@@ -133,5 +174,15 @@ public class ServServiceImpl implements ServService {
     @Autowired
     public void setAddressEntityRepository(AddressEntityRepository addressEntityRepository) {
         this.addressEntityRepository = addressEntityRepository;
+    }
+
+    @Autowired
+    public void setSpecificationEntityRepository(SpecificationEntityRepository specificationEntityRepository) {
+        this.specificationEntityRepository = specificationEntityRepository;
+    }
+
+    @Autowired
+    public void setOfferService(OfferService offerService) {
+        this.offerService = offerService;
     }
 }
