@@ -9,6 +9,8 @@ import {StorageService} from "./services/storage/storage.service";
 import {OfferingService} from "./services/offering.service";
 import {SpecificationService} from "./services/specification.service";
 import {PhoneNumberService} from "./services/phonenumber.service";
+import {ProfileService} from "./services/profile.service";
+import {ServService} from "./services/serv.service";
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import {PhoneNumberService} from "./services/phonenumber.service";
     OfferingService,
     SpecificationService,
     PhoneNumberService,
+    ProfileService,
+    ServService
   ],
   bootstrap: [AppComponent]
 })

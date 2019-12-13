@@ -3,6 +3,7 @@ package com.telenova.backend.web.controller;
 import com.telenova.backend.database.entity.ServiceStatusEntity;
 import com.telenova.backend.service.ServService;
 import com.telenova.backend.web.dto.NewMobileService;
+import com.telenova.backend.web.dto.ProfileMobileOffer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,6 +28,11 @@ public class ServiceController {
     @PostMapping("/mobile")
     public Boolean createNewService(@RequestBody NewMobileService mobileService) {
         return servService.createMobileService(mobileService);
+    }
+
+    @GetMapping("/mobile/user/{id}")
+    public List<ProfileMobileOffer> getMobileServicesByUserId(@PathVariable Integer id) {
+        return servService.getMobileServicesByUserId(id);
     }
 
     @Autowired

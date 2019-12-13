@@ -24,35 +24,21 @@
     </li>
   </ul>
   <div>
-    <div class="border">
+    <div class="border" *ngFor="let service of mobileServices">
       <div class="row mt-4">
         <div class="col-3 font-weight-bold ml-3">Номер</div>
-        <div class="col-6">+375 29 665-78-14</div>
+        <div class="col-6">{{service.phoneNumber.honeNumber}}</div>
       </div>
       <div class="row mt-4">
         <div class="col-3 font-weight-bold ml-3">Тариф</div>
-        <div class="col-6">Тортик твою мать!</div>
+        <div class="col-6">{{service.offer.name}}</div>
       </div>
       <div class="row mt-4">
         <div class="col-3 font-weight-bold ml-3">Баланс</div>
         <div class="col-6 row">
-          <p class="ml-3">105 р.</p>
+          <p class="ml-3">{{service.service.balance.value}} р.</p>
           <a href="#" class="ml-3">Пополнить</a>
         </div>
-      </div>
-    </div>
-    <div class="border">
-      <div class="row mt-4">
-        <div class="col-3 font-weight-bold ml-3">Номер</div>
-        <div class="col-6">+375 29 665-74-14</div>
-      </div>
-      <div class="row mt-4">
-        <div class="col-3 font-weight-bold ml-3">Тариф</div>
-        <div class="col-6">Делу время - потехе ЩАС!</div>
-      </div>
-      <div class="row mt-4 mb-4">
-        <div class="col-3 font-weight-bold ml-3">Баланс</div>
-        <div class="col-6">0</div>
       </div>
     </div>
   </div>

@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PhoneNumberEntityRepository extends CrudRepository<PhoneNumberEntity, Integer> {
     PhoneNumberEntity findByHoneNumber(String phoneNumber);
+    PhoneNumberEntity findByServiceId(Integer id);
 }
