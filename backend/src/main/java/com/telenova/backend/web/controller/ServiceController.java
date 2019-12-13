@@ -64,6 +64,11 @@ public class ServiceController {
         return servService.setServiceStatus(serviceEntity);
     }
 
+    @GetMapping("/internet/user/{id}")
+    public List<InternetServiceOfferModel> getInternetServicesByUserId(@PathVariable Integer id) {
+        return servService.getInternetServicesByUserId(id);
+    }
+
     @Autowired
     public void setServService(ServService servService) {
         this.servService = servService;

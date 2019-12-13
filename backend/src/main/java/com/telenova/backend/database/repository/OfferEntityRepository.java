@@ -10,4 +10,5 @@ import java.util.List;
 @Repository
 public interface OfferEntityRepository extends CrudRepository<OfferEntity, Integer> {
     List<OfferEntity> findAllBySpecification(SpecificationEntity specification);
+
 }

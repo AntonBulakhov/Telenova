@@ -5,7 +5,6 @@ import com.telenova.backend.database.entity.BalanceEntity;
 import com.telenova.backend.database.entity.OfferEntity;
 import com.telenova.backend.database.entity.PhoneNumberEntity;
 import com.telenova.backend.database.entity.ServiceEntity;
-import com.telenova.backend.database.entity.ServiceEntityPK;
 import com.telenova.backend.database.entity.ServiceStatusEntity;
 import com.telenova.backend.database.entity.SpecificationEntity;
 import com.telenova.backend.database.repository.AddressEntityRepository;
@@ -68,7 +67,9 @@ public class ServServiceImpl implements ServService {
     public List<ProfileMobileOffer> getMobileServicesByUserId(Integer id) {
         List<ProfileMobileOffer> profileMobileOffers = new ArrayList<>();
 
-        List<ServiceEntity> serviceEntities = serviceEntityRepository.findAllByUserId(id);
+        List<Integer> offerIds = getOfferIdsBySpecification(MOBILE_SPECIFICATION_ID);
+
+        List<ServiceEntity> serviceEntities = serviceEntityRepository.findAllByUserIdAndOfferIdIn(id, offerIds);
         for (ServiceEntity serviceEntity : serviceEntities) {
             PhoneNumberEntity phoneNumberEntity = phoneNumberEntityRepository.findByServiceId(serviceEntity.getId());
             OfferEntity offerEntity = offerEntityRepository.findById(serviceEntity.getOfferId()).get();
@@ -82,6 +83,16 @@ public class ServServiceImpl implements ServService {
         }
 
         return profileMobileOffers;
+    }
+
+    public List<Integer> getOfferIdsBySpecification(Integer offerSpecification) {
+        SpecificationEntity mobileSpecification = specificationEntityRepository.findById(offerSpecification).get();
+        List<OfferEntity> offerEntities = offerEntityRepository.findAllBySpecification(mobileSpecification);
+        List<Integer> offerIds = new ArrayList<>();
+        for (OfferEntity offerEntity : offerEntities) {
+            offerIds.add(offerEntity.getId());
+        }
+        return offerIds;
     }
 
     @Override
@@ -139,6 +150,10 @@ public class ServServiceImpl implements ServService {
         List<ServiceEntity> serviceEntities = serviceEntityRepository.
                 findAllByOfferIdInAndServiceStatus(offerIds, serviceStatusEntity);
 
+        return getInternetServiceOfferModels(serviceEntities);
+    }
+
+    private List<InternetServiceOfferModel> getInternetServiceOfferModels(List<ServiceEntity> serviceEntities) {
         List<InternetServiceOfferModel> modelList = new ArrayList<>();
         for (ServiceEntity serviceEntity : serviceEntities) {
             OfferEntity offerEntity = offerEntityRepository.findById(serviceEntity.getOfferId()).get();
@@ -149,7 +164,6 @@ public class ServServiceImpl implements ServService {
 
             modelList.add(model);
         }
-
         return modelList;
     }
 
@@ -164,6 +178,14 @@ public class ServServiceImpl implements ServService {
         Integer balanceId = serviceEntity.getBalance().getId();
         serviceEntityRepository.deleteByIdIs(id);
         balanceEntityRepository.deleteById(balanceId);
+    }
+
+    @Override
+    public List<InternetServiceOfferModel> getInternetServicesByUserId(Integer id) {
+        List<Integer> offerIds = getOfferIdsBySpecification(INTERNET_SPECIFICATION_ID);
+        List<ServiceEntity> serviceEntities = serviceEntityRepository.findAllByUserIdAndOfferIdIn(id, offerIds);
+
+        return getInternetServiceOfferModels(serviceEntities);
     }
 
     @Override

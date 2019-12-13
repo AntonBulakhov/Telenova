@@ -3,6 +3,7 @@ import {ProfileService} from "../../../services/profile.service";
 import {ServService} from "../../../services/serv.service";
 import {ProfileMobileOfferModel} from "../../../dto/profilemobileoffer.model";
 import {BalanceModel} from "../../../models/balance.model";
+import {InternetServiceOfferModel} from "../../../dto/iserviceoffer.model";
 
 @Component({
   selector: 'app-profile',
@@ -11,7 +12,10 @@ import {BalanceModel} from "../../../models/balance.model";
 })
 export class ProfileComponent implements OnInit {
 
+  public mobileTabSelected: boolean = true;
+
   public mobileServices: ProfileMobileOfferModel[];
+  public internetServices: InternetServiceOfferModel[];
 
   public balanceToFill: BalanceModel;
 
@@ -25,6 +29,9 @@ export class ProfileComponent implements OnInit {
     this.servService.getMobileServiceByUserId('1').subscribe(value => {
       this.mobileServices = value as ProfileMobileOfferModel[];
     });
+    this.servService.getInternetServicesByUserId('1').subscribe(value => {
+      this.internetServices = value as InternetServiceOfferModel[];
+    })
   }
 
   onBalanceClick(balanceModel: BalanceModel): void {
@@ -36,5 +43,9 @@ export class ProfileComponent implements OnInit {
     this.servService.fillBalance(this.balanceToFill).subscribe(value => {
       this.ngOnInit();
     })
+  }
+
+  setTabSelected(tab: boolean): void {
+    this.mobileTabSelected = tab;
   }
 }

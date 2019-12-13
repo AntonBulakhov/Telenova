@@ -47,4 +47,8 @@ export class ServService {
   deleteInternetService(serviceId: string): Observable<any> {
     return this.http.delete<any>("/api/service/internet/" + serviceId);
   }
+
+  getInternetServicesByUserId(id: string): Observable<InternetServiceOfferModel[]> {
+    return this.http.get<InternetServiceOfferModel[]>("/api/service/internet/user/" + id);
+  }
 }

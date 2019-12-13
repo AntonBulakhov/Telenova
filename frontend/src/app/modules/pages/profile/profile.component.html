@@ -16,14 +16,14 @@
 
 <div class="container mb-5">
   <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link active" href="#">Мобильные тарифы</a>
+    <li class="nav-item" *ngIf="mobileServices.length != 0">
+      <a class="nav-link btn-link" [ngClass]="{active: mobileTabSelected}" (click)="setTabSelected(true)">Мобильные тарифы</a>
     </li>
-    <li class="nav-item">
-      <a class="nav-link" href="">Домашний Интернет</a>
+    <li class="nav-item" *ngIf="internetServices.length != 0">
+      <a class="nav-link btn-link" [ngClass]="{active: !mobileTabSelected}" (click)="setTabSelected(false)">Домашний Интернет</a>
     </li>
   </ul>
-  <div>
+  <div *ngIf="mobileTabSelected">
     <div class="border" *ngFor="let service of mobileServices">
       <div class="row mt-4">
         <div class="col-3 font-weight-bold ml-3">Номер</div>
@@ -44,23 +44,26 @@
     </div>
   </div>
 
-  <div hidden >
-    <div class="border">
+  <div *ngIf="!mobileTabSelected">
+    <div class="border" *ngFor="let service of internetServices">
       <div class="row mt-4">
         <div class="col-3 font-weight-bold ml-3">Номер договора</div>
-        <div class="col-6">№134122879</div>
+        <div class="col-6">№{{service.service.id}}</div>
       </div>
       <div class="row mt-4">
         <div class="col-3 font-weight-bold ml-3">Тариф Интернет</div>
-        <div class="col-6">Котики! Кекс! Цезарь-Ролл!</div>
+        <div class="col-6">{{service.offer.offer.name}}</div>
       </div>
       <div class="row mt-4">
         <div class="col-3 font-weight-bold ml-3">Скорость</div>
-        <div class="col-6">100/50 Мбит/сек</div>
+        <div class="col-6">до {{service.offer.internetSpeed.value}} {{service.offer.internetSpeed.valueMeasure.measurement}}</div>
       </div>
       <div class="row mt-4 mb-4">
         <div class="col-3 font-weight-bold ml-3">Баланс</div>
-        <div class="col-6">110</div>
+        <div class="col-6">{{service.service.balance.value}} р.
+          <a href="#" class="ml-3"
+             data-toggle="modal" data-target="#modalPayment" (click)="onBalanceClick(service.service.balance)">Пополнить</a>
+        </div>
       </div>
     </div>
   </div>
@@ -113,8 +116,8 @@
         <div class="row">
           <div class="col-sm-4">
             <div class="form-group mb-4">
-              <label>Сумма</label>
-              <input type="text" required class="form-control" [(ngModel)]="sum">
+              <label for="sum">Сумма</label>
+              <input type="text" name="sum" id="sum" required class="form-control" [(ngModel)]="sum">
             </div>
           </div>
         </div>

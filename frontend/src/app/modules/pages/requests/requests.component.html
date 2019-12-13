@@ -6,7 +6,7 @@
 </div>
 
 <div class="container-fluid">
-  <div class="container-fluid ml-0 mr-0 pl-0 pr-0 justify-content-center d-flex mb-5"
+  <div class="container-fluid ml-0 mr-0 pl-0 pr-0 justify-content-center d-flex mb-5 mt-5"
        *ngIf="services == undefined || services.length == 0">
     <h1>Нет новых заявок!</h1>
   </div>
@@ -107,14 +107,14 @@
           </div>
         </div>
 
-        <div class="row">
-          <h3>Сумма: 25 р.</h3>
+        <div class="container-fluid row">
+          <h4>Сумма: 25 р.</h4>
         </div>
       </div>
 
       <div class="modal-footer">
-        <button type="button" class="btn btn-main" *ngFor="let service of serviceToPay"
-                (click)="setStatus(service, '3')">Оплатить</button>
+        <button type="button" class="btn btn-main"
+                data-dismiss="modal" (click)="setStatus(serviceToPay, '3')">Оплатить</button>
       </div>
 
     </div>
