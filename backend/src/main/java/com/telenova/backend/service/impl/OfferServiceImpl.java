@@ -1,5 +1,6 @@
 package com.telenova.backend.service.impl;
 
+import com.fasterxml.jackson.databind.util.Converter;
 import com.telenova.backend.database.entity.OfferEntity;
 import com.telenova.backend.database.entity.OfferHasOfferingEntity;
 import com.telenova.backend.database.entity.OfferStatusEntity;
@@ -9,6 +10,7 @@ import com.telenova.backend.database.repository.OfferEntityRepository;
 import com.telenova.backend.database.repository.OfferHasOfferingEntityRepository;
 import com.telenova.backend.database.repository.OfferStatusEntityRepository;
 import com.telenova.backend.database.repository.OfferingEntityRepository;
+import com.telenova.backend.database.repository.PageOfferRepository;
 import com.telenova.backend.database.repository.SpecificationEntityRepository;
 import com.telenova.backend.service.OfferService;
 import com.telenova.backend.service.OfferingService;
@@ -16,11 +18,15 @@ import com.telenova.backend.web.dto.GroupedOfferings;
 import com.telenova.backend.web.dto.InternetOfferDto;
 import com.telenova.backend.web.dto.MobileOfferDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Function;
 
 import static com.telenova.backend.constants.OfferStatusConstants.BLOCKED_OFFER_STATUS_ID;
 import static com.telenova.backend.constants.SpecificationConstants.INTERNET_SPECIFICATION_ID;
@@ -33,6 +39,7 @@ public class OfferServiceImpl implements OfferService {
     private OfferHasOfferingEntityRepository offerHasOfferingEntityRepository;
     private SpecificationEntityRepository specificationEntityRepository;
     private OfferStatusEntityRepository offerStatusEntityRepository;
+    private PageOfferRepository pageOfferRepository;
 
     private OfferingService offeringService;
 
@@ -41,7 +48,8 @@ public class OfferServiceImpl implements OfferService {
         Optional<SpecificationEntity> specification = specificationEntityRepository.findById(MOBILE_SPECIFICATION_ID);
         List<MobileOfferDto> offerDtos = new ArrayList<>();
         if (specification.isPresent()) {
-            List<OfferEntity> offerEntities = offerEntityRepository.findAllBySpecification(specification.get());
+            OfferStatusEntity status = offerStatusEntityRepository.findById(BLOCKED_OFFER_STATUS_ID).get();
+            List<OfferEntity> offerEntities = offerEntityRepository.findAllBySpecificationAndOfferStatusNot(specification.get(), status);
             for (OfferEntity offerEntity : offerEntities) {
                 MobileOfferDto offerDto = new MobileOfferDto();
                 offerDto.setOffer(offerEntity);
@@ -50,7 +58,6 @@ public class OfferServiceImpl implements OfferService {
                 offerDto.setMobileMinutesIn(groupedOfferings.getMobileMinutesIn().get(0));
                 offerDto.setMobileMinutesOut(groupedOfferings.getMobileMinutesOut().get(0));
 
-                if(offerEntity.getOfferStatus().getId() != BLOCKED_OFFER_STATUS_ID)
                 offerDtos.add(offerDto);
             }
         }
@@ -128,6 +135,26 @@ public class OfferServiceImpl implements OfferService {
         internetOfferDto.setInternetSoft1(internetSoft.get(0));
         internetOfferDto.setInternetSoft2(internetSoft.get(1));
         return internetOfferDto;
+    }
+
+    @Override
+    public Page<MobileOfferDto> getAllMobilePage(int page, int size) {
+        SpecificationEntity specification = specificationEntityRepository.findById(MOBILE_SPECIFICATION_ID).get();
+        Pageable pageable = PageRequest.of(page, size);
+        OfferStatusEntity status = offerStatusEntityRepository.findById(BLOCKED_OFFER_STATUS_ID).get();
+        Page<OfferEntity> offerPage = pageOfferRepository.getAllBySpecificationAndOfferStatusNot(specification, status, pageable);
+        return offerPage.map(new Function<OfferEntity, MobileOfferDto>(){
+            @Override
+            public MobileOfferDto apply(OfferEntity offerEntity) {
+                MobileOfferDto offerDto = new MobileOfferDto();
+                offerDto.setOffer(offerEntity);
+                GroupedOfferings groupedOfferings = getGroupedOfferingsByOfferId(offerEntity.getId());
+                offerDto.setMobileInternet(groupedOfferings.getMobileInternet().get(0));
+                offerDto.setMobileMinutesIn(groupedOfferings.getMobileMinutesIn().get(0));
+                offerDto.setMobileMinutesOut(groupedOfferings.getMobileMinutesOut().get(0));
+                return offerDto;
+            }
+        });
     }
 
     @Override
@@ -237,6 +264,11 @@ public class OfferServiceImpl implements OfferService {
     @Autowired
     public void setOfferStatusEntityRepository(OfferStatusEntityRepository offerStatusEntityRepository) {
         this.offerStatusEntityRepository = offerStatusEntityRepository;
+    }
+
+    @Autowired
+    public void setPageOfferRepository(PageOfferRepository pageOfferRepository) {
+        this.pageOfferRepository = pageOfferRepository;
     }
 
     @Autowired

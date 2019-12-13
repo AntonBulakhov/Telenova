@@ -4,6 +4,7 @@ import com.telenova.backend.database.entity.OfferEntity;
 import com.telenova.backend.database.entity.OfferStatusEntity;
 import com.telenova.backend.web.dto.InternetOfferDto;
 import com.telenova.backend.web.dto.MobileOfferDto;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -25,4 +26,6 @@ public interface OfferService {
     void setOfferStatus(OfferEntity offerStatus);
 
     InternetOfferDto getInternetOfferDto(OfferEntity offerEntity);
+
+    Page<MobileOfferDto> getAllMobilePage(int page, int size);
 }

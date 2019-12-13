@@ -7,11 +7,13 @@ import com.telenova.backend.web.dto.InternetOfferDto;
 import com.telenova.backend.web.dto.MobileOfferDto;
 import com.telenova.backend.web.dto.OfferDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -19,6 +21,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/offer")
 public class OfferController {
+
+    private static final int PAGE_SIZE = 6;
 
     private OfferService offerService;
 
@@ -60,6 +64,11 @@ public class OfferController {
     @GetMapping("/mobile/{id}")
     public MobileOfferDto getMobileOfferById(@PathVariable Integer id) {
         return offerService.getMobileOfferById(id);
+    }
+
+    @GetMapping(value = "/mobile/offers", params = "page")
+    public Page<MobileOfferDto> getMobileOffersPage(@RequestParam Integer page) {
+        return offerService.getAllMobilePage(page, PAGE_SIZE);
     }
 
     @Autowired

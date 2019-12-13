@@ -45,4 +45,8 @@ export class OfferService {
   setOfferStatus(offer: OfferModel): Observable<any> {
     return this.http.post<any>("/api/offer/status", offer);
   }
+
+  getMobilePage(page: number): Observable<any> {
+    return this.http.get<any>("/api/offer/mobile/offers?page=" + page);
+  }
 }
