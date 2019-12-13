@@ -11,4 +11,5 @@ import java.util.List;
 public interface ServiceEntityRepository extends CrudRepository<ServiceEntity, Integer> {
     List<ServiceEntity> findAllByUserId(Integer id);
     List<ServiceEntity> findAllByOfferIdInAndServiceStatus(List<Integer> offerIds, ServiceStatusEntity status);
+    ServiceEntity findByIdIs(Integer id);
 }

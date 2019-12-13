@@ -21,4 +21,8 @@ public interface ServService {
     Boolean createInternetService(ServiceEntity serviceEntity);
 
     List<InternetServiceOfferModel> getInternetServicesByStatus(Integer id);
+
+    void deleteService(Integer id);
+
+    Boolean setServiceStatus(ServiceEntity serviceEntity);
 }

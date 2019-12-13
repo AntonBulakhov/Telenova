@@ -8,6 +8,7 @@ import com.telenova.backend.web.dto.InternetServiceOfferModel;
 import com.telenova.backend.web.dto.NewMobileService;
 import com.telenova.backend.web.dto.ProfileMobileOffer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,6 +52,16 @@ public class ServiceController {
     @GetMapping("/internet/all/status/{id}")
     public List<InternetServiceOfferModel> getInternetServicesByStatus(@PathVariable Integer id) {
         return servService.getInternetServicesByStatus(id);
+    }
+
+    @DeleteMapping("/internet/{id}")
+    public void deleteService(@PathVariable Integer id) {
+        servService.deleteService(id);
+    }
+
+    @PostMapping("/status")
+    public Boolean setServiceStatus(@RequestBody ServiceEntity serviceEntity) {
+        return servService.setServiceStatus(serviceEntity);
     }
 
     @Autowired

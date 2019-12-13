@@ -5,6 +5,7 @@ import com.telenova.backend.database.entity.BalanceEntity;
 import com.telenova.backend.database.entity.OfferEntity;
 import com.telenova.backend.database.entity.PhoneNumberEntity;
 import com.telenova.backend.database.entity.ServiceEntity;
+import com.telenova.backend.database.entity.ServiceEntityPK;
 import com.telenova.backend.database.entity.ServiceStatusEntity;
 import com.telenova.backend.database.entity.SpecificationEntity;
 import com.telenova.backend.database.repository.AddressEntityRepository;
@@ -26,6 +27,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.telenova.backend.constants.SpecificationConstants.INTERNET_SPECIFICATION_ID;
+import static com.telenova.backend.constants.SpecificationConstants.MOBILE_SPECIFICATION_ID;
 
 @Service
 public class ServServiceImpl implements ServService {
@@ -149,6 +151,28 @@ public class ServServiceImpl implements ServService {
         }
 
         return modelList;
+    }
+
+    @Override
+    public void deleteService(Integer id) {
+        ServiceEntity serviceEntity = serviceEntityRepository.findByIdIs(id);
+        OfferEntity offerEntity = offerEntityRepository.findById(serviceEntity.getOfferId()).get();
+        if (MOBILE_SPECIFICATION_ID == offerEntity.getSpecification().getId()) {
+            PhoneNumberEntity phoneNumberEntity = phoneNumberEntityRepository.findByServiceId(id);
+            phoneNumberEntityRepository.deleteById(phoneNumberEntity.getId());
+        }
+        Integer balanceId = serviceEntity.getBalance().getId();
+        serviceEntityRepository.deleteById(id);
+        balanceEntityRepository.deleteById(balanceId);
+    }
+
+    @Override
+    public Boolean setServiceStatus(ServiceEntity serviceEntity) {
+        ServiceEntity service = serviceEntityRepository.findByIdIs(serviceEntity.getId());
+        service.setServiceStatus(serviceEntity.getServiceStatus());
+        service = serviceEntityRepository.save(service);
+
+        return service.getServiceStatus().getId() == serviceEntity.getServiceStatus().getId();
     }
 
     @Autowired

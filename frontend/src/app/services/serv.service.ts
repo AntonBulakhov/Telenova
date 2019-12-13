@@ -39,4 +39,12 @@ export class ServService {
   getInternetServicesByStatus(id: string): Observable<InternetServiceOfferModel[]> {
     return this.http.get<InternetServiceOfferModel[]>("/api/service/internet/all/status/" + id);
   }
+
+  setServiceStatus(service: ServiceModel): Observable<boolean> {
+    return this.http.post<boolean>("/api/service/status", service);
+  }
+
+  deleteInternetService(serviceId: string): Observable<any> {
+    return this.http.delete<any>("/api/service/internet/" + serviceId);
+  }
 }
