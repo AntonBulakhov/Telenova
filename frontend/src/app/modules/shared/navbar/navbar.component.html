@@ -51,7 +51,8 @@
         </a>
         <div class="dropdown-menu" aria-labelledby="userDropdown" *ngIf="auth.user != null">
           <button class="dropdown-item" routerLink="/profile">Профиль</button>
-          <button class="dropdown-item" routerLink="/requests" *ngIf="auth.user.role.id == 3">Заявки</button>
+          <button class="dropdown-item" routerLink="/requests"
+                  *ngIf="auth.user.role.id == 3 || auth.user.role.id == 4">Заявки</button>
           <button class="dropdown-item" *ngIf="auth.user.role.id != 4" routerLink="/adminmenu">Управление</button>
           <button class="dropdown-item border-top" (click)="logOut()">Выйти</button>
         </div>

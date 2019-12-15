@@ -1,8 +1,8 @@
 <app-navbar></app-navbar>
 
-<div class="container-fluid mt-3">
-  <h4>Активные заявки</h4>
-  <h4>Новые заявки пользователей</h4>
+<div class="container-fluid mt-3" [ngSwitch]="auth.user.role.id">
+  <h4 *ngSwitchCase="4">Активные заявки</h4>
+  <h4 *ngSwitchCase="3">Новые заявки пользователей</h4>
 </div>
 
 <div class="container-fluid">

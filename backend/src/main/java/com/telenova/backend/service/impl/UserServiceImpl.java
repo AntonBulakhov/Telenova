@@ -9,6 +9,7 @@ import com.telenova.backend.database.repository.UserEntityRepository;
 import com.telenova.backend.database.repository.UserStatusEntityRepository;
 import com.telenova.backend.service.UserService;
 import com.telenova.backend.web.dto.SafeUser;
+import org.apache.commons.collections4.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -21,6 +22,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static com.telenova.backend.constants.InitialAdminConstants.ADMIN_EMAIL;
@@ -48,7 +50,13 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public Boolean saveUser(UserEntity userEntity) {
         userEntity.setPassword(bCrypt.encode(userEntity.getPassword()));
-        return userRepository.save(userEntity) != null;
+
+        List<UserEntity> existingUsers = userRepository.getAllByLoginOrEmail(userEntity.getLogin(), userEntity.getEmail());
+        if (CollectionUtils.isEmpty(existingUsers)) {
+            return userRepository.save(userEntity) != null;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -95,6 +103,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
     @Override
     public UserEntity getUserById(Integer id) {
         return userRepository.findById(id).get();
+    }
+
+    @Override
+    public List<UserStatusEntity> getAllStatuses() {
+        return (List<UserStatusEntity>) userStatusRepository.findAll();
+    }
+
+    @Override
+    public List<RoleEntity> getAllRoles() {
+        return (List<RoleEntity>) roleRepository.findAll();
     }
 
     @Autowired

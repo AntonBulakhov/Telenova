@@ -3,6 +3,8 @@ import {ServService} from "../../../services/serv.service";
 import {InternetServiceOfferModel} from "../../../dto/iserviceoffer.model";
 import {ServiceStatusModel} from "../../../models/servicestatus.model";
 import {ServiceModel} from "../../../models/service.model";
+import {AuthService} from "../../../services/security/auth.service";
+import {Constants} from "../../../constants/constants";
 
 @Component({
   selector: 'app-requests',
@@ -17,13 +19,23 @@ export class RequestsComponent implements OnInit {
 
   private serviceToPay: string;
 
-  constructor(private servService: ServService) {
+  constructor(private servService: ServService,
+              private auth: AuthService) {
   }
 
   ngOnInit() {
-    this.servService.getInternetServicesByStatus('2').subscribe(value => {
-      this.services = value as InternetServiceOfferModel[];
-    });
+    switch (this.auth.user.role.id) {
+      case Constants.EMPLOYEE_ROLE_ID:
+        this.servService.getInternetServicesByStatus(Constants.NEW_SERVICE_STATUS_ID).subscribe(value => {
+          this.services = value as InternetServiceOfferModel[];
+        });
+        break;
+      case Constants.CLIENT_ROLE_ID:
+        this.servService.getInternetServicesByStatus(Constants.CONFIRMED_SERVICE_STATUS_ID).subscribe(value => {
+          this.services = value as InternetServiceOfferModel[];
+        });
+        break;
+    }
     this.servService.getAllServiceStatuses().subscribe(value => {
       this.statuses = value as ServiceStatusModel[];
     });
