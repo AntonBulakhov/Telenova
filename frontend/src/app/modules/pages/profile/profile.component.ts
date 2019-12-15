@@ -40,6 +40,10 @@ ngOnInit() {
     this.servService.getInternetServicesByUserId(this.auth.user.id).subscribe(value => {
       this.internetServices = value as InternetServiceOfferModel[];
     });
+
+    if(this.mobileServices.length == 0) {
+      this.mobileTabSelected = false;
+    }
   }
 
   onBalanceClick(balanceModel: BalanceModel): void {

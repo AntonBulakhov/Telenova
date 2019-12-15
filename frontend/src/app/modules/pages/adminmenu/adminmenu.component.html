@@ -7,7 +7,7 @@
   <table class="table table-bordered table-hover">
     <thead>
     <tr>
-      <th scope="col">Управление пользователями</th>
+      <th scope="col" *ngIf="currentUser.role.id == '1' || currentUser.role.id == '2'" >Управление пользователями</th>
       <th scope="col">Мобильные тарифы</th>
       <th scope="col">Интернет тарифы</th>
       <th scope="col">Предложения</th>
@@ -15,11 +15,14 @@
     </thead>
     <tbody>
     <tr>
-      <td>
+      <td *ngIf="currentUser.role.id == '1' || currentUser.role.id == '2'">
         <ul>
-          <li class="btn-link" (click)="navigateToUsers(2)">Администраторы</li>
-          <li class="btn-link" (click)="navigateToUsers(3)">Работники</li>
-          <li class="btn-link" (click)="navigateToUsers(4)">Клиенты</li>
+          <li class="btn-link" (click)="navigateToUsers(2)"
+              *ngIf="currentUser.role.id == '1'">Администраторы</li>
+          <li class="btn-link" (click)="navigateToUsers(3)"
+              *ngIf="currentUser.role.id == '1' || currentUser.role.id == '2'">Работники</li>
+          <li class="btn-link" (click)="navigateToUsers(4)"
+              *ngIf="currentUser.role.id == '1' || currentUser.role.id == '2'">Клиенты</li>
         </ul>
       </td>
       <td>
