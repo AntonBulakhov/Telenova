@@ -8,6 +8,8 @@ import {OfferService} from "../../../services/offer.service";
 import {OfferingModel} from "../../../models/offering.model";
 import {OfferStatusModel} from "../../../models/offerstatus.model";
 import {OfferModel} from "../../../models/offer.model";
+import {AuthService} from "../../../services/security/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-mobileconfiguration',
@@ -27,9 +29,14 @@ export class MobileconfigurationComponent implements OnInit {
 
   constructor(private offeringService: OfferingService,
               private specificationService: SpecificationService,
-              private offerService: OfferService) { }
+              private offerService: OfferService,
+              private auth: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
+    if(this.auth.user.role.id == '4') {
+      this.router.navigate(['/']);
+    }
     this.offerService.getMobileOffers().subscribe(value => {
       this.offers = value as OfferDTOModel[];
     });

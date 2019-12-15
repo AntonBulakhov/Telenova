@@ -3,6 +3,7 @@ import {OfferService} from "../../../services/offer.service";
 import {InternetOfferDtoModel} from "../../../dto/iOfferdto.model";
 import {StorageService} from "../../../services/storage/storage.service";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../services/security/auth.service";
 
 @Component({
   selector: 'app-internet',
@@ -15,7 +16,8 @@ export class InternetComponent implements OnInit {
 
   constructor(private offerService: OfferService,
               private storageService: StorageService,
-              private router: Router) { }
+              private router: Router,
+              private auth: AuthService) { }
 
   ngOnInit() {
     this.offerService.getInternetOffers().subscribe(value => {

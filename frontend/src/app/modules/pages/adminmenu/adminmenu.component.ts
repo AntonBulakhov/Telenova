@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {StorageService} from "../../../services/storage/storage.service";
+import {AuthService} from "../../../services/security/auth.service";
 
 @Component({
   selector: 'app-adminmenu',
@@ -10,10 +11,14 @@ import {StorageService} from "../../../services/storage/storage.service";
 export class AdminmenuComponent implements OnInit {
 
   constructor(private router: Router,
-              private storageService: StorageService) {
+              private storageService: StorageService,
+              private auth: AuthService) {
   }
 
   ngOnInit() {
+    if(this.auth.user.role.id == '4') {
+      this.router.navigate(['/']);
+    }
   }
 
   navigateToUsers(roleID): void {

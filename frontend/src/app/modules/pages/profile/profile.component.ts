@@ -4,6 +4,8 @@ import {ServService} from "../../../services/serv.service";
 import {ProfileMobileOfferModel} from "../../../dto/profilemobileoffer.model";
 import {BalanceModel} from "../../../models/balance.model";
 import {InternetServiceOfferModel} from "../../../dto/iserviceoffer.model";
+import {UserModel} from "../../../models/user.model";
+import {AuthService} from "../../../services/security/auth.service";
 
 @Component({
   selector: 'app-profile',
@@ -14,24 +16,30 @@ export class ProfileComponent implements OnInit {
 
   public mobileTabSelected: boolean = true;
 
-  public mobileServices: ProfileMobileOfferModel[];
-  public internetServices: InternetServiceOfferModel[];
+  public mobileServices: ProfileMobileOfferModel[] = [];
+  public internetServices: InternetServiceOfferModel[] = [];
 
   public balanceToFill: BalanceModel;
 
   public sum: string;
 
+  public user: UserModel;
+
   constructor(private profileService: ProfileService,
-              private servService: ServService) {
+              private servService: ServService,
+              private auth: AuthService) {
   }
 
-  ngOnInit() {
-    this.servService.getMobileServiceByUserId('1').subscribe(value => {
+ngOnInit() {
+  this.auth.userAuth().subscribe(value => {
+    this.user = value as UserModel;
+  });
+  this.servService.getMobileServiceByUserId(this.auth.user.id).subscribe(value => {
       this.mobileServices = value as ProfileMobileOfferModel[];
     });
-    this.servService.getInternetServicesByUserId('1').subscribe(value => {
+    this.servService.getInternetServicesByUserId(this.auth.user.id).subscribe(value => {
       this.internetServices = value as InternetServiceOfferModel[];
-    })
+    });
   }
 
   onBalanceClick(balanceModel: BalanceModel): void {

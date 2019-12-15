@@ -7,6 +7,8 @@ import {OfferingService} from "../../../services/offering.service";
 import {SpecificationService} from "../../../services/specification.service";
 import {OfferService} from "../../../services/offer.service";
 import {OfferModel} from "../../../models/offer.model";
+import {AuthService} from "../../../services/security/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-internetconfiguration',
@@ -25,9 +27,14 @@ export class InternetconfigurationComponent implements OnInit {
 
   constructor(private offeringService: OfferingService,
               private specificationService: SpecificationService,
-              private offerService: OfferService) { }
+              private offerService: OfferService,
+              private auth: AuthService,
+              private router: Router) { }
 
   ngOnInit() {
+    if(this.auth.user.role.id == '4') {
+      this.router.navigate(['/']);
+    }
     this.offerService.getInternetOffers().subscribe(value => {
       this.offers = value as InternetOfferDtoModel[];
     });

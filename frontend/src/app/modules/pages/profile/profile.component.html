@@ -1,26 +1,28 @@
 <app-navbar></app-navbar>
 
-  <div class="container mt-5 mb-5">
+<div class="container mt-5 mb-5" *ngIf="user != null">
   <div class="border-bottom">
     <h2 class="ml-3">Личные данные</h2>
   </div>
   <div class="row mt-4">
     <div class="col-3 font-weight-bold ml-3">Фамилия Имя</div>
-    <div class="col-6">Иван Иванов</div>
+    <div class="col-6">{{user.surname}} {{user.name}}</div>
   </div>
   <div class="row mt-4 mb-4">
     <div class="col-3 font-weight-bold ml-3">Email</div>
-    <div class="col-6">someone@example.com</div>
+    <div class="col-6">{{user.email}}</div>
   </div>
 </div>
 
 <div class="container mb-5">
   <ul class="nav nav-tabs">
     <li class="nav-item" *ngIf="mobileServices.length != 0">
-      <a class="nav-link btn-link" [ngClass]="{active: mobileTabSelected}" (click)="setTabSelected(true)">Мобильные тарифы</a>
+      <a class="nav-link btn-link" [ngClass]="{active: mobileTabSelected}" (click)="setTabSelected(true)">Мобильные
+        тарифы</a>
     </li>
     <li class="nav-item" *ngIf="internetServices.length != 0">
-      <a class="nav-link btn-link" [ngClass]="{active: !mobileTabSelected}" (click)="setTabSelected(false)">Домашний Интернет</a>
+      <a class="nav-link btn-link" [ngClass]="{active: !mobileTabSelected}" (click)="setTabSelected(false)">Домашний
+        Интернет</a>
     </li>
   </ul>
   <div *ngIf="mobileTabSelected">
@@ -38,7 +40,8 @@
         <div class="col-6 row">
           <p class="ml-3">{{service.service.balance.value}} р.</p>
           <a href="#" class="ml-3"
-             data-toggle="modal" data-target="#modalPayment" (click)="onBalanceClick(service.service.balance)">Пополнить</a>
+             data-toggle="modal" data-target="#modalPayment"
+             (click)="onBalanceClick(service.service.balance)">Пополнить</a>
         </div>
       </div>
     </div>
@@ -56,13 +59,15 @@
       </div>
       <div class="row mt-4">
         <div class="col-3 font-weight-bold ml-3">Скорость</div>
-        <div class="col-6">до {{service.offer.internetSpeed.value}} {{service.offer.internetSpeed.valueMeasure.measurement}}</div>
+        <div class="col-6">
+          до {{service.offer.internetSpeed.value}} {{service.offer.internetSpeed.valueMeasure.measurement}}</div>
       </div>
       <div class="row mt-4 mb-4">
         <div class="col-3 font-weight-bold ml-3">Баланс</div>
         <div class="col-6">{{service.service.balance.value}} р.
           <a href="#" class="ml-3"
-             data-toggle="modal" data-target="#modalPayment" (click)="onBalanceClick(service.service.balance)">Пополнить</a>
+             data-toggle="modal" data-target="#modalPayment"
+             (click)="onBalanceClick(service.service.balance)">Пополнить</a>
         </div>
       </div>
     </div>

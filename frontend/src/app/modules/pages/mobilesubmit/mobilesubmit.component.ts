@@ -8,6 +8,7 @@ import {ServiceStatusModel} from "../../../models/servicestatus.model";
 import {ServService} from "../../../services/serv.service";
 import {NewServiceModel} from "../../../dto/newservice.model";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../services/security/auth.service";
 
 @Component({
   selector: 'app-mobilesubmit',
@@ -27,9 +28,13 @@ export class MobilesubmitComponent implements OnInit {
               private offerService: OfferService,
               private phoneNumberService: PhoneNumberService,
               private servService: ServService,
-              private router: Router) { }
+              private router: Router,
+              private auth: AuthService) { }
 
   ngOnInit() {
+    if(this.auth.user.role.id != '4') {
+      this.router.navigate(['/']);
+    }
     let id: string = this.storageService.getOfferId();
     this.offerService.getMobileOfferById(id).subscribe(value => {
       this.offer = value as OfferDTOModel;

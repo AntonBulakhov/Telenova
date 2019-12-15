@@ -34,7 +34,7 @@
       <tr>
         <td>{{offer.offer.price}} руб./мес.</td>
       </tr>
-      <tr>
+      <tr *ngIf="auth.user.role.id == 4">
         <td>
           <button class="btn-main btn col-6" (click)="onBuy(offer.offer.id)">Купить</button>
         </td>

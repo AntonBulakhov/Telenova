@@ -6,6 +6,8 @@ import {OfferingService} from "../../../services/offering.service";
 import {GroupedOfferingsModel} from "../../../dto/groupedofferings.model";
 import {SpecificationModel} from "../../../models/specification.model";
 import {SpecificationService} from "../../../services/specification.service";
+import {AuthService} from "../../../services/security/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-offeringsconfiguration',
@@ -21,10 +23,15 @@ export class OfferingsconfigurationComponent implements OnInit {
   private specifications: SpecificationModel[];
 
   constructor(private offeringService: OfferingService,
-              private specificationService: SpecificationService) {
+              private specificationService: SpecificationService,
+              private auth: AuthService,
+              private router: Router) {
   }
 
   ngOnInit() {
+    if(this.auth.user.role.id == '4') {
+      this.router.navigate(['/']);
+    }
     this.offeringService.getGroupedOfferingsByType().subscribe(value => {
       this.groupedOfferings = value;
     });

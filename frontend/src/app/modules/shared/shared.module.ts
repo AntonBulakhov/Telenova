@@ -5,6 +5,7 @@ import { FooterComponent } from './footer/footer.component';
 import { CardComponent } from './card/card.component';
 import {RouterModule} from "@angular/router";
 import { SocialComponent } from './social/social.component';
+import {FormsModule} from "@angular/forms";
 
 
 
@@ -15,10 +16,11 @@ import { SocialComponent } from './social/social.component';
     CardComponent,
     SocialComponent
   ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
+    imports: [
+        CommonModule,
+        RouterModule,
+        FormsModule
+    ],
   exports: [
     NavbarComponent,
     FooterComponent,

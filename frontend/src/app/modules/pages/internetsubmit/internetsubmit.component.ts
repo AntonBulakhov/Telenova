@@ -5,6 +5,7 @@ import {ServiceModel} from "../../../models/service.model";
 import {AddressModel} from "../../../models/address.model";
 import {ServiceStatusModel} from "../../../models/servicestatus.model";
 import {Router} from "@angular/router";
+import {AuthService} from "../../../services/security/auth.service";
 
 @Component({
   selector: 'app-internetsubmit',
@@ -20,10 +21,14 @@ export class InternetsubmitComponent implements OnInit {
 
   constructor(private storageService: StorageService,
               private servService: ServService,
-              private router: Router) {
+              private router: Router,
+              private auth: AuthService) {
   }
 
   ngOnInit() {
+    if(this.auth.user.role.id != '4') {
+      this.router.navigate(['/']);
+    }
     this.serv.offerId = this.storageService.getOfferId();
     this.servService.getAllServiceStatuses().subscribe(value => {
       this.serviceStatuses = value as ServiceStatusModel[];

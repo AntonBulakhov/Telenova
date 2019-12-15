@@ -6,8 +6,8 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup1">
         <div class="navbar-nav">
           <a class="nav-item nav-link active" href="#">Частным клиентам</a>
-          <a class="nav-item nav-link active ml-4" hidden href="#">О компании</a>
-          <a class="nav-item nav-link active ml-4" hidden href="#">Фирменные центры</a>
+          <a class="nav-item nav-link active ml-4" href="#">О компании</a>
+          <a class="nav-item nav-link active ml-4" href="#">Фирменные центры</a>
         </div>
       </div>
     </div>
@@ -43,46 +43,50 @@
         <a href="#" hidden>
           <img src="/assets/img/cart.svg" alt="user" style="height: 35px">
         </a>
-        <a href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <img src="/assets/img/user.svg" alt="user" style="height: 35px">
+        <a href="#" id="enter" data-toggle="modal" data-target="#modalLogin" aria-expanded="false" *ngIf="auth.user == null">
+          <img src="/assets/img/enter.png" alt="user" style="height: 35px">
         </a>
-        <div class="dropdown-menu" aria-labelledby="userDropdown">
-          <button class="dropdown-item" data-toggle="modal" data-target="#modalLogin">Войти</button>
-          <a class="dropdown-item" routerLink="/profile">Профиль</a>
-          <a class="dropdown-item" routerLink="/requests">Заявки</a>
-          <a class="dropdown-item" routerLink="/adminmenu">Управление</a>
-          <a class="dropdown-item" href="#">Выйти</a>
+        <a href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" *ngIf="auth.user != null">
+          <img src="/assets/img/user-logged.png" alt="user" style="height: 35px">
+        </a>
+        <div class="dropdown-menu" aria-labelledby="userDropdown" *ngIf="auth.user != null">
+          <button class="dropdown-item" routerLink="/profile">Профиль</button>
+          <button class="dropdown-item" routerLink="/requests" *ngIf="auth.user.role.id == 3">Заявки</button>
+          <button class="dropdown-item" *ngIf="auth.user.role.id != 4" routerLink="/adminmenu">Управление</button>
+          <button class="dropdown-item border-top" (click)="logOut()">Выйти</button>
         </div>
       </div>
     </div>
   </nav>
-</header>
 
-<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginlabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <p class="modal-title text-muted" id="modalLoginlabel">Введите логин и пароль для входа</p>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-          <label for="login">Логин</label>
-          <input type="email" name="email" id="login" class="form-control input-sm" placeholder="Введите логин"
-                 autocomplete="off">
+  <div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-labelledby="modalLoginlabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <p class="modal-title text-muted" id="modalLoginlabel">Введите логин и пароль для входа</p>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
         </div>
-        <div class="form-group">
-          <label for="password">Пароль</label>
-          <input type="email" name="email" id="password" class="form-control input-sm" placeholder="Введите пароль"
-                 autocomplete="off">
-        </div>
-        <div class="row container-fluid">
-          <button type="submit" class="btn btn-main col" data-dismiss="modal">Войти</button>
-          <button data-dismiss="modal" class="btn btn-link col pl-5" (click)="registerUser(4)">Зарегестрироваться</button>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="login">Логин</label>
+            <input type="text" name="login" id="login" class="form-control input-sm" placeholder="Введите логин" #login="ngModel"
+                   [(ngModel)]="loginUser.login" required minlength="4" autocomplete="off">
+            <small [hidden]="login.valid || login.untouched" class="text-danger">Логин не верный</small>
+          </div>
+          <div class="form-group">
+            <label for="password">Пароль</label>
+            <input type="password" name="password" id="password" class="form-control input-sm" placeholder="Введите пароль"
+                   [(ngModel)]="loginUser.password" required minlength="4" #password="ngModel">
+            <small [hidden]="password.valid || login.untouched" class="text-danger">Пароль не верный</small>
+          </div>
+          <div class="row container-fluid">
+            <button type="submit" data-dismiss="modal" class="btn btn-main col-6" (click)="onSubmit()">Войти</button>
+            <button data-dismiss="modal" class="btn btn-link col pl-5" (click)="registerUser(4)">Зарегестрироваться</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+</header>
