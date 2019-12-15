@@ -8,6 +8,7 @@ import com.telenova.backend.web.dto.InternetServiceOfferModel;
 import com.telenova.backend.web.dto.NewMobileService;
 import com.telenova.backend.web.dto.ProfileMobileOffer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,21 +30,25 @@ public class ServiceController {
         return servService.getAllStatuses();
     }
 
+    @PreAuthorize("hasRole('CLIENT')")
     @PostMapping("/mobile")
     public Boolean createNewService(@RequestBody NewMobileService mobileService) {
         return servService.createMobileService(mobileService);
     }
 
+    @PreAuthorize("hasRole('CLIENT')")
     @GetMapping("/mobile/user/{id}")
     public List<ProfileMobileOffer> getMobileServicesByUserId(@PathVariable Integer id) {
         return servService.getMobileServicesByUserId(id);
     }
 
+    @PreAuthorize("hasRole('CLIENT')")
     @PostMapping("/balance")
     public Boolean fillBalance(@RequestBody BalanceEntity balanceEntity) {
         return servService.fillBalance(balanceEntity);
     }
 
+    @PreAuthorize("hasRole('CLIENT')")
     @PostMapping("/internet")
     public Boolean createInternetService(@RequestBody ServiceEntity serviceEntity) {
         return servService.createInternetService(serviceEntity);

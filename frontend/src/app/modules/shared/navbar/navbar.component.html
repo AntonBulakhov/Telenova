@@ -76,6 +76,7 @@
           </button>
         </div>
         <div class="modal-body">
+          <h5 class="text-danger" *ngIf="auth.authError">Логин или пароль введены неправильно!</h5>
           <div class="form-group">
             <label for="login">Логин</label>
             <input type="text" name="login" id="login" class="form-control input-sm" placeholder="Введите логин"

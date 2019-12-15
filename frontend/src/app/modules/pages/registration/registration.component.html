@@ -11,6 +11,8 @@
       </div>
     </div>
 
+    <h3 class="text-danger" *ngIf="auth.regError">Такой пользователь уже существует!</h3>
+
     <div class="form-row justify-content-center">
       <div class="form-group col-4">
         <label for="first_name">Имя</label>

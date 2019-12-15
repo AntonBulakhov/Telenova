@@ -7,6 +7,7 @@ import com.telenova.backend.service.UserService;
 import com.telenova.backend.web.dto.SafeUser;
 import com.telenova.backend.web.dto.UserWithSumDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,16 +34,19 @@ public class UserController {
         return userService.getAllRoles();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping
     public Boolean saveUser(@RequestBody UserEntity userEntity) {
         return userService.saveUser(userEntity);
     }
 
+    @PreAuthorize("hasAnyRole('SUPER', 'ADMIN')")
     @GetMapping("/role/{id}")
     public List<UserWithSumDto> getAllUsersByRoleId(@PathVariable Integer id) {
         return userService.getAllUserByRoleId(id);
     }
 
+    @PreAuthorize("hasAnyRole('SUPER', 'ADMIN')")
     @PostMapping("/status")
     public Boolean setUserStatus(@RequestBody UserEntity userEntity) {
         return userService.setUserStatus(userEntity);

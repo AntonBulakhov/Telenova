@@ -8,6 +8,7 @@ import com.telenova.backend.web.dto.MobileOfferDto;
 import com.telenova.backend.web.dto.OfferDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,11 +42,13 @@ public class OfferController {
         return offerService.getAllInternetOffers();
     }
 
+    @PreAuthorize("hasAnyRole('SUPER', 'ADMIN', 'EMPLOYEE')")
     @PostMapping("/mobile")
     public Boolean createMobileOffer(@RequestBody MobileOfferDto mobileOfferDto) {
         return offerService.createMobileOffer(mobileOfferDto);
     }
 
+    @PreAuthorize("hasAnyRole('SUPER', 'ADMIN', 'EMPLOYEE')")
     @PostMapping("/internet")
     public Boolean createMobileOffer(@RequestBody InternetOfferDto internetOfferDto) {
         return offerService.createInternetOffer(internetOfferDto);
@@ -56,6 +59,7 @@ public class OfferController {
         return offerService.getAllOfferStatuses();
     }
 
+    @PreAuthorize("hasAnyRole('SUPER', 'ADMIN', 'EMPLOYEE')")
     @PostMapping("/status")
     public void setOfferStatus(@RequestBody OfferEntity offerStatus) {
         offerService.setOfferStatus(offerStatus);

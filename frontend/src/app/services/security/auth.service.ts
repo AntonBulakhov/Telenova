@@ -10,6 +10,7 @@ export class AuthService {
   public user: UserModel;
   public token: string;
   public authError: boolean = false;
+  public regError: boolean = false;
 
   constructor(private http: HttpClient,
               private router: Router,
@@ -60,7 +61,9 @@ export class AuthService {
         this.user = data;
         this.router.navigate(['']);
       })
-    })
+    }, error => {
+      this.regError = true;
+    });
   }
 
   // public edit(user: UserModel):void{
