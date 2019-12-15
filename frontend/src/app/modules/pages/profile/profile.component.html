@@ -25,8 +25,13 @@
         Интернет</a>
     </li>
   </ul>
+
+<!--mobile-->
   <div *ngIf="mobileTabSelected">
     <div class="border" *ngFor="let service of mobileServices">
+      <div class="row mt-4" *ngIf="service.service.serviceStatus.id == '2'">
+        <h5 class="text-danger">Заблокирован!</h5>
+      </div>
       <div class="row mt-4">
         <div class="col-3 font-weight-bold ml-3">Номер</div>
         <div class="col-6">{{service.phoneNumber.honeNumber}}</div>
@@ -46,9 +51,12 @@
       </div>
     </div>
   </div>
-
+<!--internet-->
   <div *ngIf="!mobileTabSelected">
     <div class="border" *ngFor="let service of internetServices">
+      <div class="row mt-4" *ngIf="service.service.serviceStatus.id == '2'">
+        <h5 class="text-danger">Заблокирован!</h5>
+      </div>
       <div class="row mt-4">
         <div class="col-3 font-weight-bold ml-3">Номер договора</div>
         <div class="col-6">№{{service.service.id}}</div>
