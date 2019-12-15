@@ -86,3 +86,7 @@ a, a:hover {
   cursor: pointer;
   color: #0f9eb5;
 }
+
+.pointer-cursor {
+  cursor: pointer;
+}

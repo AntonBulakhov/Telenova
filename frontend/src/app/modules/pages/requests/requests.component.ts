@@ -5,6 +5,7 @@ import {ServiceStatusModel} from "../../../models/servicestatus.model";
 import {ServiceModel} from "../../../models/service.model";
 import {AuthService} from "../../../services/security/auth.service";
 import {Constants} from "../../../constants/constants";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-requests',
@@ -13,28 +14,29 @@ import {Constants} from "../../../constants/constants";
 })
 export class RequestsComponent implements OnInit {
 
-  private services: InternetServiceOfferModel[];
+  private services: InternetServiceOfferModel[] = [];
 
-  private statuses: ServiceStatusModel[];
+  private statuses: ServiceStatusModel[] = [];
 
   private serviceToPay: string;
 
   constructor(private servService: ServService,
-              private auth: AuthService) {
+              private auth: AuthService,
+              private router: Router) {
   }
 
   ngOnInit() {
-    switch (this.auth.user.role.id) {
-      case Constants.EMPLOYEE_ROLE_ID:
-        this.servService.getInternetServicesByStatus(Constants.NEW_SERVICE_STATUS_ID).subscribe(value => {
-          this.services = value as InternetServiceOfferModel[];
-        });
-        break;
-      case Constants.CLIENT_ROLE_ID:
-        this.servService.getInternetServicesByStatus(Constants.CONFIRMED_SERVICE_STATUS_ID).subscribe(value => {
-          this.services = value as InternetServiceOfferModel[];
-        });
-        break;
+    if (this.auth.user.role.id != Constants.EMPLOYEE_ROLE_ID && this.auth.user.role.id != Constants.CLIENT_ROLE_ID) {
+      this.router.navigate(['/']);
+    }
+    if (this.auth.user.role.id == Constants.EMPLOYEE_ROLE_ID) {
+      this.servService.getInternetServicesByStatus(Constants.NEW_SERVICE_STATUS_ID).subscribe(value => {
+        this.services = value as InternetServiceOfferModel[];
+      });
+    } else {
+      this.servService.getInternetServicesByStatus(Constants.CONFIRMED_SERVICE_STATUS_ID).subscribe(value => {
+        this.services = value as InternetServiceOfferModel[];
+      });
     }
     this.servService.getAllServiceStatuses().subscribe(value => {
       this.statuses = value as ServiceStatusModel[];

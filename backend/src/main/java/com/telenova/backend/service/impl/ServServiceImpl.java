@@ -52,11 +52,11 @@ public class ServServiceImpl implements ServService {
         balanceEntity.setValue(0);
         balanceEntity = balanceEntityRepository.save(balanceEntity);
         ServiceEntity serviceEntity = mobileService.getService();
-        serviceEntity.setUserId(1); // stub for now
+        serviceEntity.setUserId(mobileService.getService().getUserId());
         serviceEntity.setBalance(balanceEntity);
         serviceEntity = serviceEntityRepository.save(serviceEntity);
         PhoneNumberEntity phoneNumberEntity = mobileService.getPhoneNumber();
-        phoneNumberEntity.setUserId(1); // stub for now
+        phoneNumberEntity.setUserId(serviceEntity.getUserId());
         phoneNumberEntity.setServiceId(serviceEntity.getId());
         phoneNumberEntityRepository.save(phoneNumberEntity);
 
@@ -109,7 +109,6 @@ public class ServServiceImpl implements ServService {
         balanceEntity = balanceEntityRepository.save(balanceEntity);
 
         serviceEntity.setBalance(balanceEntity);
-        serviceEntity.setUserId(1); //stab
 
         AddressEntity addressEntity = addressEntityRepository.findByCityAndStreetAndHouseAndFlat(
                 serviceEntity.getAddress().getCity(),

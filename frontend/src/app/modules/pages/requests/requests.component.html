@@ -16,6 +16,7 @@
       <th scope="col">#</th>
       <th scope="col">Тариф</th>
       <th scope="col">Характеристики</th>
+      <th scope="col">Адресс</th>
       <th scope="col">Цена</th>
       <th scope="col">Статус</th>
       <th scope="col"></th>
@@ -44,6 +45,12 @@
             <p>{{service.offer.internetSoft2.value}}</p>
           </li>
         </ul>
+      </td>
+      <td>
+        <p>г. {{service.service.address.city}},</p>
+        <p>ул. {{service.service.address.street}},</p>
+        <p>д. {{service.service.address.house}},</p>
+        <p>кв. {{service.service.address.flat}}</p>
       </td>
       <td>{{service.offer.offer.price}} руб./мес.</td>
       <td [ngSwitch]="service.service.serviceStatus.id">

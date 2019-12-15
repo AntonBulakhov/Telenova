@@ -36,6 +36,7 @@ export class InternetsubmitComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.serv.userId = this.auth.user.id;
     this.serv.address = this.address;
     this.serv.serviceStatus = this.getNewStatus('1');
     this.servService.createInternetService(this.serv).subscribe(value => {

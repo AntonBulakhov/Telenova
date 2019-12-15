@@ -49,6 +49,7 @@ export class MobilesubmitComponent implements OnInit {
 
   onPaidMobileTariff(): void {
     let newService: NewServiceModel = new NewServiceModel();
+    newService.service.userId = this.auth.user.id;
     newService.phoneNumber = this.phoneNumber;
     newService.service.offerId = this.offer.offer.id;
     newService.service.serviceStatus = this.getPaidStatus('3');
