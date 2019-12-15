@@ -25,6 +25,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.telenova.backend.constants.ServiceStatusConstants.ACTIVE_SERVICE_STATUS_ID;
 import static com.telenova.backend.constants.SpecificationConstants.INTERNET_SPECIFICATION_ID;
 import static com.telenova.backend.constants.SpecificationConstants.MOBILE_SPECIFICATION_ID;
 
@@ -99,7 +100,16 @@ public class ServServiceImpl implements ServService {
     public Boolean fillBalance(BalanceEntity balanceEntity) {
         BalanceEntity balance = balanceEntityRepository.findById(balanceEntity.getId()).get();
         balance.setValue(balance.getValue() + balanceEntity.getValue());
-        return balanceEntityRepository.save(balance) != null;
+        balance = balanceEntityRepository.save(balance);
+
+        if (balance.getValue() > 0) {
+            ServiceStatusEntity activeStatus = serviceStatusEntityRepository.findById(ACTIVE_SERVICE_STATUS_ID).get();
+            ServiceEntity service = serviceEntityRepository.findByBalance(balance);
+            service.setBalance(balance);
+            service.setServiceStatus(activeStatus);
+            serviceEntityRepository.save(service);
+        }
+        return balance != null;
     }
 
     @Override
