@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
+import static com.telenova.backend.constants.UserConstants.BLOCKED_USER_STATUS_ID;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/auth")
@@ -68,7 +70,11 @@ public class AuthenticationController {
 
     @GetMapping("/user")
     public ResponseEntity<SafeUser> authUser(Principal userInfo) {
-        return ResponseEntity.ok(userService.getSafeUserByLogin(userInfo.getName()));
+        SafeUser safeUser = userService.getSafeUserByLogin(userInfo.getName());
+        if(safeUser.getUserStatus().getId() == BLOCKED_USER_STATUS_ID){
+            ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.ok(safeUser);
     }
 
     @Autowired
