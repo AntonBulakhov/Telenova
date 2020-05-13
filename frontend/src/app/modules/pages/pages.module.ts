@@ -19,6 +19,7 @@ import { OfferingsconfigurationComponent } from './offeringsconfiguration/offeri
 import { UsersComponent } from './users/users.component';
 import {FormsModule} from "@angular/forms";
 import { PaymenthistoryComponent } from './paymenthistory/paymenthistory.component';
+import { ValidationComponent } from './validation/validation.component';
 
 
 
@@ -39,6 +40,7 @@ import { PaymenthistoryComponent } from './paymenthistory/paymenthistory.compone
     OfferingsconfigurationComponent,
     UsersComponent,
     PaymenthistoryComponent,
+    ValidationComponent,
     ],
     imports: [
         CommonModule,
@@ -57,7 +59,8 @@ import { PaymenthistoryComponent } from './paymenthistory/paymenthistory.compone
     MobilesubmitComponent,
     InternetsubmitComponent,
     RequestsComponent,
-    PaymenthistoryComponent
+    PaymenthistoryComponent,
+    ValidationComponent
   ]
 })
 export class PagesModule { }

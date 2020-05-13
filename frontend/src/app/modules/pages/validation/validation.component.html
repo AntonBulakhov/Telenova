@@ -1,0 +1,39 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5 mb-5">
+  <div class="container-fluid mt-3">
+    <h4>Ошибки при валидации параметров</h4>
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th scope="col">№</th>
+      <th scope="col">Пользователь</th>
+      <th scope="col">Поле</th>
+      <th scope="col">Текущее значение</th>
+      <th scope="col">Правильное значение</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let errorModel of errorRecords;  let i = index">
+      <td>
+        {{i + 1}}
+      </td>
+      <td>
+        {{errorModel.user}}
+      </td>
+      <td>
+        {{errorModel.field}}
+      </td>
+      <td class="text-danger">
+        {{errorModel.wrongValue}}
+      </td>
+      <td class="text-main">
+        {{errorModel.trueValue}}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-footer></app-footer>

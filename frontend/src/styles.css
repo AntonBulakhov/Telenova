@@ -90,3 +90,7 @@ a, a:hover {
 .pointer-cursor {
   cursor: pointer;
 }
+
+.text-main {
+  color: #0F9EB5;
+}
