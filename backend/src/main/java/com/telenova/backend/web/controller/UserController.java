@@ -34,7 +34,7 @@ public class UserController {
         return userService.getAllRoles();
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAnyRole('SUPER', 'ADMIN')")
     @PostMapping
     public Boolean saveUser(@RequestBody UserEntity userEntity) {
         return userService.saveUser(userEntity);

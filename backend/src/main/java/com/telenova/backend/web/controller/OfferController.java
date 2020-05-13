@@ -50,7 +50,7 @@ public class OfferController {
 
     @PreAuthorize("hasAnyRole('SUPER', 'ADMIN', 'EMPLOYEE')")
     @PostMapping("/internet")
-    public Boolean createMobileOffer(@RequestBody InternetOfferDto internetOfferDto) {
+    public Boolean createInternetOffer(@RequestBody InternetOfferDto internetOfferDto) {
         return offerService.createInternetOffer(internetOfferDto);
     }
 
