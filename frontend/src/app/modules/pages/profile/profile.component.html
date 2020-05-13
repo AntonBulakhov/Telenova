@@ -14,7 +14,7 @@
   </div>
 </div>
 
-<div class="container mb-5">
+<div class="container mb-2">
   <ul class="nav nav-tabs">
     <li class="nav-item" *ngIf="mobileServices.length != 0">
       <a class="nav-link btn-link" [ngClass]="{active: mobileTabSelected}" (click)="setTabSelected(true)">Мобильные
@@ -70,7 +70,7 @@
         <div class="col-6">
           до {{service.offer.internetSpeed.value}} {{service.offer.internetSpeed.valueMeasure.measurement}}</div>
       </div>
-      <div class="row mt-4 mb-4">
+      <div class="row mt-4 mb-2">
         <div class="col-3 font-weight-bold ml-3">Баланс</div>
         <div class="col-6">{{service.service.balance.value}} р.
           <a href="#" class="ml-3"
@@ -79,6 +79,12 @@
         </div>
       </div>
     </div>
+  </div>
+</div>
+
+<div class="container mt-2 mb-5" *ngIf="user != null">
+  <div class="row">
+    <div class="col-3 ml-3 btn-link pointer-cursor" routerLink="/paymenthistory">Посмотреть историю платежей</div>
   </div>
 </div>
 

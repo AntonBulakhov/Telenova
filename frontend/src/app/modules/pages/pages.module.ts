@@ -18,6 +18,7 @@ import { InternetconfigurationComponent } from './internetconfiguration/internet
 import { OfferingsconfigurationComponent } from './offeringsconfiguration/offeringsconfiguration.component';
 import { UsersComponent } from './users/users.component';
 import {FormsModule} from "@angular/forms";
+import { PaymenthistoryComponent } from './paymenthistory/paymenthistory.component';
 
 
 
@@ -37,6 +38,7 @@ import {FormsModule} from "@angular/forms";
     InternetconfigurationComponent,
     OfferingsconfigurationComponent,
     UsersComponent,
+    PaymenthistoryComponent,
     ],
     imports: [
         CommonModule,
@@ -54,7 +56,8 @@ import {FormsModule} from "@angular/forms";
     TariffComponent,
     MobilesubmitComponent,
     InternetsubmitComponent,
-    RequestsComponent
+    RequestsComponent,
+    PaymenthistoryComponent
   ]
 })
 export class PagesModule { }

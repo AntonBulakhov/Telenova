@@ -1,0 +1,33 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-5 mb-5">
+  <div class="container-fluid mt-3">
+    <h4>История платежей тарифов</h4>
+  </div>
+  <table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+      <th scope="col">Тариф</th>
+      <th scope="col">Сумма платежа</th>
+      <th scope="col">Дата</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let payment of historyDtos">
+      <td>
+        {{payment.offer}}
+      </td>
+      <td>
+        {{payment.payment}}
+      </td>
+      <td>
+        {{payment.date}}
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<app-social></app-social>
+<app-footer></app-footer>
